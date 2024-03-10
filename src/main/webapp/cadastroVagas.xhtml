@@ -15,7 +15,7 @@
                 <p:menubar>
                     <p:menuitem value="Buscar"
                                 icon="pi pi-fw pi-search"
-                                action="/filtroVagas.html"/>
+                                outcome="/filtroVagas.html"/>
                 </p:menubar>
             </ui:define>
 
@@ -29,6 +29,7 @@
                                       showWeek="true"
                                       value="#{vagasManagedBean.vagasVO.inicio}"
                                       mindate="#{vagasManagedBean.dataAtual}"
+                                      showButtonBar="true"
                         />
                     </div>
 
@@ -41,6 +42,7 @@
                                       showWeek="true"
                                       value="#{vagasManagedBean.vagasVO.fim}"
                                       mindate="#{vagasManagedBean.dataAtual}"
+                                      showButtonBar="true"
                         />
                     </div>
 
