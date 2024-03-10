@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:remove> form-layout </ui:remove>
+
+    <ui:remove> Áreas </ui:remove>
+    <ui:remove> decorFiltroCampos </ui:remove>
+    <ui:remove> decorFiltroMensagens </ui:remove>
+    <ui:remove> decorFiltroBotoes </ui:remove>
+    <ui:remove> decorFiltroOutros </ui:remove>
+
+    <p:menubar>
+        <p:menuitem value="Incluir"
+                    icon="pi pi-fw pi-plus"
+                    action="#{filtroBean['cadastrar']()}"/>
+    </p:menubar>
+
+    <h:form id="form-layout" prependId="false" styleClass="form-layout">
+        <fieldset id="form-layout-campos" class="form-layout-campos">
+            <ui:remove> Área de campos de busca </ui:remove>
+            <ui:insert name="decorFiltroCampos" />
+        </fieldset>
+
+        <ui:remove> Área de botões </ui:remove>
+        <div id="form-layout-botoes">
+            <p:commandButton value="Consultar" action="#{filtroBean['consultar']()}" update="resultado"/>
+        </div>
+    </h:form>
+
+    <ui:remove> Área de mensagens </ui:remove>
+    <p:outputPanel id="form-layout-mensagens" rendered="false">
+        <ui:insert name="decorFiltroMensagens" />
+    </p:outputPanel>
+
+    <ui:remove> Área de resultado </ui:remove>
+    <h:panelGroup id="resultado">
+        <ui:insert name="decorFiltroResultado" />
+    </h:panelGroup>
+
+</ui:composition>
