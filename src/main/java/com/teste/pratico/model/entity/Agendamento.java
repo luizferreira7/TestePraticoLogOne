@@ -6,6 +6,7 @@ import java.util.Date;
 @Entity
 public class Agendamento extends AbstractEntity {
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
     private String numero;
