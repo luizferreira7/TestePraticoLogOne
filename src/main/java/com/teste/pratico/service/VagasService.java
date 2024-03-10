@@ -6,6 +6,7 @@ import com.teste.pratico.repository.VagasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,10 +20,9 @@ public class VagasService {
         Vagas vagas = new Vagas(vagasVO.getInicio(), vagasVO.getFim(), vagasVO.getQuantidade());
 
         vagasRepository.save(vagas);
-
     }
 
-    public List<VagasVO> recuperaTodasVagasAtivas() {
-        return vagasRepository.recuperarVagasAtivas();
+    public List<VagasVO> findVagasVO(Date inicio, Date fim) {
+        return vagasRepository.findVagasByInicioAndFim(inicio, fim);
     }
 }
