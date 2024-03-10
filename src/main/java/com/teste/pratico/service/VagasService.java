@@ -22,7 +22,7 @@ public class VagasService {
 
     }
 
-    public List<Vagas> recuperaTodasVagas() {
-        return vagasRepository.findAll();
+    public List<VagasVO> recuperaTodasVagasAtivas() {
+        return vagasRepository.recuperarVagasAtivas();
     }
 }

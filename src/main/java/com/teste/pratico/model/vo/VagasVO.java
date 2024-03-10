@@ -1,10 +1,11 @@
 package com.teste.pratico.model.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VagasVO {
 
-    private String id;
+    private Long id;
 
     private Date inicio;
 
@@ -12,21 +13,31 @@ public class VagasVO {
 
     private Integer quantidade;
 
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
     public VagasVO() {
     }
 
-    public VagasVO(String id, Date inicio, Date fim, Integer quantidade) {
+    public VagasVO(Long id, Date inicio, Date fim, Integer quantidade) {
         this.id = id;
         this.inicio = inicio;
         this.fim = fim;
         this.quantidade = quantidade;
     }
 
-    public String getId() {
+    public String getDataInicioExibicao() {
+        return dateFormat.format(this.inicio);
+    }
+
+    public String getDataFimExibicao() {
+        return dateFormat.format(this.fim);
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

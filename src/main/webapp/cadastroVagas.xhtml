@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+                template="template/template.xhtml">
+
+    <ui:define name="tituloPagina">Cadastrar Vagas</ui:define>
+    <ui:define name="conteudo">
+        <ui:decorate template="layout/form.xhtml">
+            <ui:define name="decorFormCampos">
+                    <div class="form-layout-campo col-12 md:col-4">
+                        <p:outputLabel for="inicio" value="Inicio" styleClass="form-layout-label"/>
+                        <p:datePicker id="inicio"
+                                      styleClass="form-layout-value"
+                                      monthNavigator="true"
+                                      yearNavigator="true"
+                                      showWeek="true"
+                                      value="#{vagasManagedBean.vagasVO.inicio}"
+                                      mindate="#{vagasManagedBean.dataAtual}"
+                        />
+                    </div>
+
+                    <div class="form-layout-campo col-12 md:col-4">
+                        <p:outputLabel for="fim" value="Fim" styleClass="form-layout-label"/>
+                        <p:datePicker id="fim"
+                                      styleClass="form-layout-value"
+                                      monthNavigator="true"
+                                      yearNavigator="true"
+                                      showWeek="true"
+                                      value="#{vagasManagedBean.vagasVO.fim}"
+                                      mindate="#{vagasManagedBean.dataAtual}"
+                        />
+                    </div>
+
+                    <div class="form-layout-campo col-12 md:col-4">
+                        <p:outputLabel for="quantidade" value="Quantidade" styleClass="form-layout-label"/>
+                        <p:inputText id="quantidade" value="#{vagasManagedBean.vagasVO.quantidade}" styleClass="form-layout-value"/>
+                    </div>
+
+            </ui:define>
+
+            <ui:define name="decorFormBotoes">
+                <p:commandButton value="Salvar" action="#{vagasManagedBean.salvarVagas}" update="tabelaVagas"/>
+            </ui:define>
+
+            <ui:define name="decorFormOutros">
+                <div class="ui-card">
+                    <p:dataTable id="tabelaVagas" var="vagas" value="#{vagasManagedBean.vagasAtivas}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{vagas.id}" />
+                        </p:column>
+
+                        <p:column headerText="Inicio">
+                            <h:outputText value="#{vagas.dataInicioExibicao}" />
+                        </p:column>
+
+                        <p:column headerText="Fim">
+                            <h:outputText value="#{vagas.dataFimExibicao}" />
+                        </p:column>
+
+                        <p:column headerText="Quantidade">
+                            <h:outputText value="#{vagas.quantidade}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                </div>
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+
+</ui:composition>
