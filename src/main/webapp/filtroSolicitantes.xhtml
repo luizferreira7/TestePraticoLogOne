@@ -11,17 +11,17 @@
     <ui:define name="tituloPagina">Solicitantes</ui:define>
     <ui:define name="conteudo">
         <ui:decorate template="layout/filtro.xhtml">
-            <ui:param name="filtroBean" value="#{solicitantesFiltroBean}"/>
+            <ui:param name="filtroBean" value="#{solicitantesFiltroView}"/>
             <ui:define name="decorFiltroCampos">
                 <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="nome" value="Nome" styleClass="form-layout-label"/>
-                    <p:inputText id="nome" value="#{solicitantesFiltroBean.nome}" styleClass="form-layout-value"/>
+                    <p:inputText id="nome" value="#{solicitantesFiltroView.nome}" styleClass="form-layout-value"/>
                 </div>
             </ui:define>
 
             <ui:define name="decorFiltroResultado">
-                <h:panelGroup rendered="#{not empty solicitantesFiltroBean.resultado}" class="ui-card">
-                    <p:dataTable var="solicitante" value="#{solicitantesFiltroBean.resultado}">
+                <h:panelGroup rendered="#{not empty solicitantesFiltroView.resultado}" class="ui-card">
+                    <p:dataTable var="solicitante" value="#{solicitantesFiltroView.resultado}">
                         <p:column headerText="Id">
                             <h:outputText value="#{solicitante.id}" />
                         </p:column>

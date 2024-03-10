@@ -1,4 +1,4 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.service.VagasService;
@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 
 @ManagedBean
 @ViewScoped
-public class VagasFiltroBean extends AbstractFiltro<VagasVO> {
+public class VagasFiltroView extends AbstractFiltro<VagasVO> {
 
     @Autowired
     private VagasService vagasService;

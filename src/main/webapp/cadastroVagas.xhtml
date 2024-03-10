@@ -27,8 +27,8 @@
                                       monthNavigator="true"
                                       yearNavigator="true"
                                       showWeek="true"
-                                      value="#{vagasManagedBean.vagasVO.inicio}"
-                                      mindate="#{vagasManagedBean.dataAtual}"
+                                      value="#{vagasManagedView.vagasVO.inicio}"
+                                      mindate="#{vagasManagedView.dataAtual}"
                                       showButtonBar="true"
                         />
                     </div>
@@ -40,21 +40,21 @@
                                       monthNavigator="true"
                                       yearNavigator="true"
                                       showWeek="true"
-                                      value="#{vagasManagedBean.vagasVO.fim}"
-                                      mindate="#{vagasManagedBean.dataAtual}"
+                                      value="#{vagasManagedView.vagasVO.fim}"
+                                      mindate="#{vagasManagedView.dataAtual}"
                                       showButtonBar="true"
                         />
                     </div>
 
                     <div class="form-layout-campo col-12 md:col-4">
                         <p:outputLabel for="quantidade" value="Quantidade" styleClass="form-layout-label"/>
-                        <p:inputText id="quantidade" value="#{vagasManagedBean.vagasVO.quantidade}" styleClass="form-layout-value"/>
+                        <p:inputText id="quantidade" value="#{vagasManagedView.vagasVO.quantidade}" styleClass="form-layout-value"/>
                     </div>
 
             </ui:define>
 
             <ui:define name="decorFormBotoes">
-                <p:commandButton value="Salvar" action="#{vagasManagedBean.salvarVagas}"/>
+                <p:commandButton value="Salvar" action="#{vagasManagedView.salvarVagas}"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

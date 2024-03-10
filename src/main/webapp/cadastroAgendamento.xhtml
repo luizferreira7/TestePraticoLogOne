@@ -27,26 +27,26 @@
                                   monthNavigator="true"
                                   yearNavigator="true"
                                   showWeek="true"
-                                  value="#{agendamentosManagedBean.agendamentoVO.data}"
-                                  mindate="#{agendamentosManagedBean.dataAtual}"
+                                  value="#{agendamentosManagedView.agendamentoVO.data}"
+                                  mindate="#{agendamentosManagedView.dataAtual}"
                                   showButtonBar="true"
                     />
                 </div>
 
                 <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="numero" value="Numero" styleClass="form-layout-label"/>
-                    <p:inputText id="numero" value="#{agendamentosManagedBean.agendamentoVO.numero}" styleClass="form-layout-value"/>
+                    <p:inputText id="numero" value="#{agendamentosManagedView.agendamentoVO.numero}" styleClass="form-layout-value"/>
                 </div>
 
                 <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="motivo" value="Motivo" styleClass="form-layout-label"/>
-                    <p:inputText id="motivo" value="#{agendamentosManagedBean.agendamentoVO.motivo}" styleClass="form-layout-value"/>
+                    <p:inputText id="motivo" value="#{agendamentosManagedView.agendamentoVO.motivo}" styleClass="form-layout-value"/>
                 </div>
 
                 <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="solicitante" value="Solicitante" styleClass="form-layout-label"/>
-                    <p:autoComplete id="solicitante" styleClass="form-layout-value" value="#{agendamentosManagedBean.agendamentoVO.solicitante}"
-                                    completeMethod="#{solicitantesManagedBean.completeSolicitante}"
+                    <p:autoComplete id="solicitante" styleClass="form-layout-value" value="#{agendamentosManagedView.agendamentoVO.solicitante}"
+                                    completeMethod="#{solicitantesManagedView.completeSolicitante}"
                                     var="solicitante" itemLabel="#{solicitante.nome}" itemValue="#{solicitante}"
                                     converter="#{solicitanteConverter}" forceSelection="true" scrollHeight="250"/>
                 </div>
@@ -54,7 +54,7 @@
             </ui:define>
 
             <ui:define name="decorFormBotoes">
-                <p:commandButton value="Salvar" action="#{agendamentosManagedBean.salvarAgendamento()}"/>
+                <p:commandButton value="Salvar" action="#{agendamentosManagedView.salvarAgendamento()}"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

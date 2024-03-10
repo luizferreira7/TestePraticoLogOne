@@ -1,20 +1,16 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.AgendamentoVO;
-import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.service.AgendamentoService;
-import com.teste.pratico.service.VagasService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.ManagedBean;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.util.Date;
 
 @ManagedBean
 @ViewScoped
-public class AgendamentosManagedBean {
+public class AgendamentosManagedView {
 
     @Autowired
     private AgendamentoService agendamentoService;

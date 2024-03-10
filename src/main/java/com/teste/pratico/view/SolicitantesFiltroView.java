@@ -1,4 +1,4 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.service.SolicitanteService;
@@ -9,7 +9,7 @@ import javax.faces.view.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class SolicitantesFiltroBean extends  AbstractFiltro<SolicitanteVO> {
+public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
 
     @Autowired
     private SolicitanteService solicitanteService;

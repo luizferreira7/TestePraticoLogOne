@@ -11,7 +11,7 @@
     <ui:define name="tituloPagina">Agendamentos</ui:define>
     <ui:define name="conteudo">
         <ui:decorate template="layout/filtro.xhtml">
-            <ui:param name="filtroBean" value="#{agendamentosFiltroBean}"/>
+            <ui:param name="filtroBean" value="#{agendamentosFiltroView}"/>
             <ui:define name="decorFiltroCampos">
                 <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="inicio" value="Inicio" styleClass="form-layout-label"/>
@@ -20,7 +20,7 @@
                                   monthNavigator="true"
                                   yearNavigator="true"
                                   showWeek="true"
-                                  value="#{agendamentosFiltroBean.inicio}"
+                                  value="#{agendamentosFiltroView.inicio}"
                                   showButtonBar="true"
                     />
                 </div>
@@ -32,7 +32,7 @@
                                   monthNavigator="true"
                                   yearNavigator="true"
                                   showWeek="true"
-                                  value="#{agendamentosFiltroBean.fim}"
+                                  value="#{agendamentosFiltroView.fim}"
                                   showButtonBar="true"
                     />
                 </div>
@@ -40,8 +40,8 @@
             </ui:define>
 
             <ui:define name="decorFiltroResultado">
-                <h:panelGroup rendered="#{not empty agendamentosFiltroBean.resultado}" class="ui-card">
-                    <p:dataTable var="agendamento" value="#{agendamentosFiltroBean.resultado}">
+                <h:panelGroup rendered="#{not empty agendamentosFiltroView.resultado}" class="ui-card">
+                    <p:dataTable var="agendamento" value="#{agendamentosFiltroView.resultado}">
                         <p:column headerText="Id">
                             <h:outputText value="#{agendamento.id}" />
                         </p:column>

@@ -1,4 +1,4 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

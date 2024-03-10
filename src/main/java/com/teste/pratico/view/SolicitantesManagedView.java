@@ -1,6 +1,5 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
-import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.service.SolicitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @ManagedBean
 @ViewScoped
-public class SolicitantesManagedBean {
+public class SolicitantesManagedView {
 
     @Autowired
     private SolicitanteService solicitanteService;

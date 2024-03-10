@@ -11,7 +11,7 @@
     <ui:define name="tituloPagina">Vagas</ui:define>
     <ui:define name="conteudo">
         <ui:decorate template="layout/filtro.xhtml">
-            <ui:param name="filtroBean" value="#{vagasFiltroBean}"/>
+            <ui:param name="filtroBean" value="#{vagasFiltroView}"/>
             <ui:define name="decorFiltroCampos">
                 <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="inicio" value="Inicio" styleClass="form-layout-label"/>
@@ -20,7 +20,7 @@
                                   monthNavigator="true"
                                   yearNavigator="true"
                                   showWeek="true"
-                                  value="#{vagasFiltroBean.inicio}"
+                                  value="#{vagasFiltroView.inicio}"
                                   showButtonBar="true"
                     />
                 </div>
@@ -32,7 +32,7 @@
                                   monthNavigator="true"
                                   yearNavigator="true"
                                   showWeek="true"
-                                  value="#{vagasFiltroBean.fim}"
+                                  value="#{vagasFiltroView.fim}"
                                   showButtonBar="true"
                     />
                 </div>
@@ -40,8 +40,8 @@
             </ui:define>
 
             <ui:define name="decorFiltroResultado">
-                <h:panelGroup rendered="#{not empty vagasFiltroBean.resultado}" class="ui-card">
-                    <p:dataTable var="vagas" value="#{vagasFiltroBean.resultado}">
+                <h:panelGroup rendered="#{not empty vagasFiltroView.resultado}" class="ui-card">
+                    <p:dataTable var="vagas" value="#{vagasFiltroView.resultado}">
                         <p:column headerText="Id">
                             <h:outputText value="#{vagas.id}" />
                         </p:column>

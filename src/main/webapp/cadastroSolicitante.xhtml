@@ -23,13 +23,13 @@
 
                     <div class="form-layout-campo col-12 md:col-4">
                         <p:outputLabel for="nome" value="Nome" styleClass="form-layout-label"/>
-                        <p:inputText id="nome" value="#{solicitantesManagedBean.solicitanteVO.nome}" styleClass="form-layout-value"/>
+                        <p:inputText id="nome" value="#{solicitantesManagedView.solicitanteVO.nome}" styleClass="form-layout-value"/>
                     </div>
 
             </ui:define>
 
             <ui:define name="decorFormBotoes">
-                <p:commandButton value="Salvar" action="#{solicitantesManagedBean.salvarSolicitante()}"/>
+                <p:commandButton value="Salvar" action="#{solicitantesManagedView.salvarSolicitante()}"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

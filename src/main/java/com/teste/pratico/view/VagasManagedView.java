@@ -1,4 +1,4 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.service.VagasService;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 @ManagedBean
 @ViewScoped
-public class VagasManagedBean {
+public class VagasManagedView {
 
     @Autowired
     private VagasService vagasService;

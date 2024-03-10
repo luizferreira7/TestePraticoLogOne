@@ -1,4 +1,4 @@
-package com.teste.pratico.bean;
+package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.service.AgendamentoService;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 @ManagedBean
 @ViewScoped
-public class AgendamentosFiltroBean extends AbstractFiltro<AgendamentoVO> {
+public class AgendamentosFiltroView extends AbstractFiltro<AgendamentoVO> {
 
 
     @Autowired
