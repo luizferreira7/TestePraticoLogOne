@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:remove> form-layout </ui:remove>
+
+    <ui:remove> Áreas </ui:remove>
+    <ui:remove> decorFormCampos </ui:remove>
+    <ui:remove> decorFormMensagens </ui:remove>
+    <ui:remove> decorFormBotoes </ui:remove>
+    <ui:remove> decorFormOutros </ui:remove>
+
+        <h:form id="form-layout" prependId="false" styleClass="form-layout">
+                <fieldset id="form-layout-campos" class="form-layout-campos">
+                    <ui:remove> Área de campos </ui:remove>
+                    <ui:insert name="decorFormCampos" />
+                </fieldset>
+
+            <ui:remove> Área de botões </ui:remove>
+            <div id="form-layout-botoes">
+                <ui:insert name="decorFormBotoes" />
+            </div>
+        </h:form>
+
+        <ui:remove> Área de mensagens </ui:remove>
+        <p:outputPanel id="form-layout-mensagens" rendered="#{exibirAreaMensagensForm}">
+            <ui:insert name="decorFormMensagens" />
+        </p:outputPanel>
+
+        <ui:remove> Área externa ao form </ui:remove>
+        <ui:insert name="decorFormOutros" />
+
+</ui:composition>
