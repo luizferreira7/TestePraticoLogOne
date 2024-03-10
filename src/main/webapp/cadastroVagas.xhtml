@@ -11,6 +11,14 @@
     <ui:define name="tituloPagina">Cadastrar Vagas</ui:define>
     <ui:define name="conteudo">
         <ui:decorate template="layout/form.xhtml">
+            <ui:define name="decorFormMenu">
+                <p:menubar>
+                    <p:menuitem value="Buscar"
+                                icon="pi pi-fw pi-search"
+                                action="/filtroVagas.html"/>
+                </p:menubar>
+            </ui:define>
+
             <ui:define name="decorFormCampos">
                     <div class="form-layout-campo col-12 md:col-4">
                         <p:outputLabel for="inicio" value="Inicio" styleClass="form-layout-label"/>
@@ -44,30 +52,7 @@
             </ui:define>
 
             <ui:define name="decorFormBotoes">
-                <p:commandButton value="Salvar" action="#{vagasManagedBean.salvarVagas}" update="tabelaVagas"/>
-            </ui:define>
-
-            <ui:define name="decorFormOutros">
-                <div class="ui-card">
-                    <p:dataTable id="tabelaVagas" var="vagas" value="#{vagasManagedBean.vagasAtivas}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{vagas.id}" />
-                        </p:column>
-
-                        <p:column headerText="Inicio">
-                            <h:outputText value="#{vagas.dataInicioExibicao}" />
-                        </p:column>
-
-                        <p:column headerText="Fim">
-                            <h:outputText value="#{vagas.dataFimExibicao}" />
-                        </p:column>
-
-                        <p:column headerText="Quantidade">
-                            <h:outputText value="#{vagas.quantidade}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br/>
-                </div>
+                <p:commandButton value="Salvar" action="#{vagasManagedBean.salvarVagas}"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -8,33 +8,37 @@
                 xmlns:p="http://primefaces.org/ui">
 
 
-
     <ui:remove> form-layout </ui:remove>
 
     <ui:remove> Áreas </ui:remove>
+    <ui:remove> decorFormMenu</ui:remove>
     <ui:remove> decorFormCampos </ui:remove>
     <ui:remove> decorFormMensagens </ui:remove>
     <ui:remove> decorFormBotoes </ui:remove>
     <ui:remove> decorFormOutros </ui:remove>
 
-        <h:form id="form-layout" prependId="false" styleClass="form-layout">
-                <fieldset id="form-layout-campos" class="form-layout-campos">
-                    <ui:remove> Área de campos </ui:remove>
-                    <ui:insert name="decorFormCampos" />
-                </fieldset>
+    <ui:insert name="decorFormMenu"/>
 
-            <ui:remove> Área de botões </ui:remove>
-            <div id="form-layout-botoes">
-                <ui:insert name="decorFormBotoes" />
-            </div>
-        </h:form>
+    <h:form id="form-layout" prependId="false" styleClass="form-layout">
+        <fieldset id="form-layout-campos" class="form-layout-campos">
+            <ui:remove> Área de campos </ui:remove>
+            <ui:insert name="decorFormCampos"/>
+        </fieldset>
 
-        <ui:remove> Área de mensagens </ui:remove>
-        <p:outputPanel id="form-layout-mensagens" rendered="#{exibirAreaMensagensForm}">
-            <ui:insert name="decorFormMensagens" />
-        </p:outputPanel>
+        <ui:remove> Área de botões </ui:remove>
+        <div id="form-layout-botoes">
+            <ui:insert name="decorFormBotoes"/>
+        </div>
+    </h:form>
 
-        <ui:remove> Área externa ao form </ui:remove>
-        <ui:insert name="decorFormOutros" />
+    <ui:remove> Área de mensagens </ui:remove>
+    <p:outputPanel id="form-layout-mensagens">
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate/>
+        </p:messages>
+    </p:outputPanel>
+
+    <ui:remove> Área externa ao form </ui:remove>
+    <ui:insert name="decorFormOutros"/>
 
 </ui:composition>
