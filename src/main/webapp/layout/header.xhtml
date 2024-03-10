@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:remove> Áreas </ui:remove>
+    <ui:remove> titulo </ui:remove>
+    <ui:remove> menu </ui:remove>
+
+        <p:outputPanel id="header">
+            <div class="strict">
+                <ui:insert name="titulo">
+                    <h:outputLink id="titulo" value="/index.html">
+                        <h1>Sistema de Gerenciamento de Agendamento</h1>
+                    </h:outputLink>
+                </ui:insert>
+            </div>
+        </p:outputPanel>
+
+        <p:menubar id="menu" styleClass="header-menu-list">
+            <div class="strict">
+                <p:menuitem value="Cadastrar Vagas" icon="pi pi-fw pi-file-edit"/>
+            </div>
+        </p:menubar>
+</ui:composition>
