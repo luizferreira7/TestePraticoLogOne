@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @ManagedBean
@@ -14,8 +16,6 @@ public class VagasFiltroBean extends AbstractFiltro<VagasVO> {
 
     @Autowired
     private VagasService vagasService;
-
-    private final Date dataAtual = new Date();
 
     private Date inicio;
 
@@ -27,12 +27,8 @@ public class VagasFiltroBean extends AbstractFiltro<VagasVO> {
     }
 
     @Override
-    public void consultar() {
+    public void atualizaResultado() {
         setResultado(vagasService.findVagasVO(inicio, fim));
-    }
-
-    public Date getDataAtual() {
-        return dataAtual;
     }
 
     public Date getInicio() {

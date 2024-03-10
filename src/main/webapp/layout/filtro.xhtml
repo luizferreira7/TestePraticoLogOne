@@ -16,7 +16,8 @@
     <p:menubar>
         <p:menuitem value="Incluir"
                     icon="pi pi-fw pi-plus"
-                    action="#{filtroBean['cadastrar']()}"/>
+                    outcome="#{filtroBean['cadastrar']()}"
+        />
     </p:menubar>
 
     <h:form id="form-layout" prependId="false" styleClass="form-layout">
@@ -30,6 +31,13 @@
             <p:commandButton value="Consultar" action="#{filtroBean['consultar']()}" update="resultado"/>
         </div>
     </h:form>
+
+    <ui:remove> Área de mensagens </ui:remove>
+    <p:outputPanel id="form-layout-mensagens">
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate/>
+        </p:messages>
+    </p:outputPanel>
 
     <ui:remove> Área de resultado </ui:remove>
     <h:panelGroup id="resultado">
