@@ -13,8 +13,7 @@
     <ui:define name="areaForm">
         <div class="col-12 md:col-4">
             <p:outputLabel for="quantidadeForm" value="Quantidade" styleClass="form-layout-label"/>
-            <p:inputText id="quantidadeForm" value="#{vagasManagedView.vagasVO.quantidade}" styleClass="form-layout-value"/>
-            <p:message for="quantidadeForm"/>
+            <p:inputText id="quantidadeForm" required="true" value="#{vagasManagedView.vagasVO.quantidade}" styleClass="form-layout-value"/>
         </div>
 
         <p:spacer height="20"/>
@@ -29,6 +28,7 @@
                           value="#{vagasManagedView.vagasVO.inicio}"
                           mindate="#{vagasManagedView.dataAtual}"
                           showButtonBar="true"
+                          required="true"
             />
         </div>
 
@@ -44,6 +44,7 @@
                           value="#{vagasManagedView.vagasVO.fim}"
                           mindate="#{vagasManagedView.dataAtual}"
                           showButtonBar="true"
+                          required="true"
             />
         </div>
     </ui:define>
@@ -57,10 +58,12 @@
                 style="width: 5rem" />
         <p:commandButton
                 value="Salvar"
-                action="#{vagasManagedView.salvarVagas()}"
+                actionListener="#{vagasManagedView.salvarVagas()}"
+                action="#{vagasFiltroView.consultar()}"
                 style="width: 6rem"
+                validateClient="true"
                 update="resultado"
-                oncomplete="PF('dlg').hide(); #{vagasFiltroView.consultar()}"/>
+                oncomplete="PF('dlg').hide()"/>
     </ui:define>
 
 </ui:composition>

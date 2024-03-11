@@ -14,14 +14,14 @@
 
         <div class="col-12 md:col-4">
             <p:outputLabel for="numero" value="Numero" styleClass="form-layout-label"/>
-            <p:inputText id="numero" value="#{agendamentosManagedView.agendamentoVO.numero}" styleClass="form-layout-value"/>
+            <p:inputText id="numero" required="true" value="#{agendamentosManagedView.agendamentoVO.numero}" styleClass="form-layout-value"/>
         </div>
 
         <p:spacer height="20"/>
 
         <div class="col-12 md:col-4">
             <p:outputLabel for="motivo" value="Motivo" styleClass="form-layout-label"/>
-            <p:inputText id="motivo" value="#{agendamentosManagedView.agendamentoVO.motivo}" styleClass="form-layout-value"/>
+            <p:inputText id="motivo" required="true" value="#{agendamentosManagedView.agendamentoVO.motivo}" styleClass="form-layout-value"/>
         </div>
 
         <p:spacer height="20"/>
@@ -36,13 +36,16 @@
                           value="#{agendamentosManagedView.agendamentoVO.data}"
                           mindate="#{agendamentosManagedView.dataAtual}"
                           showButtonBar="true"
+                          required="true"
             />
 
             <p:spacer height="20"/>
 
             <div class="col-12 md:col-4">
                 <p:outputLabel for="solicitante" value="Solicitante" styleClass="form-layout-label"/>
-                <p:autoComplete id="solicitante" styleClass="form-layout-value" value="#{agendamentosManagedView.agendamentoVO.solicitante}"
+                <p:autoComplete id="solicitante"
+                                required="true"
+                                styleClass="form-layout-value" value="#{agendamentosManagedView.agendamentoVO.solicitante}"
                                 completeMethod="#{solicitantesManagedView.completeSolicitante}"
                                 var="solicitante" itemLabel="#{solicitante.nome}" itemValue="#{solicitante}"
                                 converter="#{solicitanteConverter}" forceSelection="true" scrollHeight="250"/>
@@ -60,9 +63,11 @@
                 style="width: 5rem" />
         <p:commandButton
                 value="Salvar"
-                action="#{agendamentosManagedView.salvarAgendamento()}"
+                action="#{agendamentosFiltroView.consultar()}"
+                actionListener="#{agendamentosManagedView.salvarAgendamento()}"
                 style="width: 6rem"
+                validateClient="true"
                 update="resultado"
-                oncomplete="PF('dlg').hide(); #{agendamentosFiltroView.consultar()}"/>
+                oncomplete="PF('dlg').hide(); "/>
     </ui:define>
 </ui:composition>

@@ -15,6 +15,7 @@
         <div class="col-12 md:col-4">
             <p:outputLabel for="nome" value="Nome" styleClass="form-layout-label"/>
             <p:inputText id="nome" required="true" value="#{solicitantesManagedView.solicitanteVO.nome}" styleClass="form-layout-value"/>
+            <p:message for="nome"/>
         </div>
 
     </ui:define>
@@ -28,10 +29,11 @@
                 style="width: 5rem"/>
         <p:commandButton
                 value="Salvar"
-                action="#{solicitantesManagedView.salvarSolicitante()}"
+                actionListener="#{solicitantesManagedView.salvarSolicitante()}"
+                action="#{solicitantesFiltroView.consultar()}"
                 style="width: 6rem"
                 update="resultado"
                 validateClient="true"
-                oncomplete="PF('dlg').hide(); #{solicitantesFiltroView.consultar()}"/>
+                oncomplete="PF('dlg').hide()"/>
     </ui:define>
 </ui:composition>
