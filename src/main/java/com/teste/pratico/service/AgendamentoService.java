@@ -6,6 +6,7 @@ import com.teste.pratico.model.exception.DatabaseOperationException;
 import com.teste.pratico.model.exception.ResourceNotFoundException;
 import com.teste.pratico.model.util.CustomMapper;
 import com.teste.pratico.model.vo.AgendamentoVO;
+import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.repository.AgendamentoRepository;
 import com.teste.pratico.repository.SolicitanteRepository;
 import com.teste.pratico.repository.VagasRepository;
@@ -49,7 +50,14 @@ public class AgendamentoService {
     public List<AgendamentoVO> findAgendamentosVO(Date inicio, Date fim) {
         List<Agendamento> agendamentos = agendamentoRepository.findAgendamentoByInicioAndFim(inicio, fim);
 
-        return agendamentos.stream().map(a -> CustomMapper.<AgendamentoVO, AgendamentoVO>map(a, AgendamentoVO.class)).collect(Collectors.toList());
+        return agendamentos.stream().map(a -> {
+            AgendamentoVO agendamentoVO = CustomMapper.map(a, AgendamentoVO.class);
+            SolicitanteVO solicitanteVO = CustomMapper.map(a.getSolicitante(), SolicitanteVO.class);
+
+            agendamentoVO.setSolicitante(solicitanteVO);
+
+            return agendamentoVO;
+        }).collect(Collectors.toList());
     }
 
     public Boolean validarAgendamento(AgendamentoVO agendamentoVO) {
