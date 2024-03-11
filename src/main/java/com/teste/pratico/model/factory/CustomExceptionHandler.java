@@ -42,6 +42,15 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 
                 requestMap.put("error-message", throwable.getMessage());
                 requestMap.put("error-stack", throwable.getStackTrace());
+
+                if (throwable instanceof NoClassDefFoundError) {
+                    try {
+                        context.getExternalContext().redirect("/notFound.html");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 nav.handleNavigation(context, null, "/error");
                 context.renderResponse();
 
