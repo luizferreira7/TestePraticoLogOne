@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="../layout/modalForm.xhtml">
+
+    <ui:param name="entityId" value="#{vagasManagedView.vagasVO.id}"/>
+
+    <ui:define name="areaForm">
+        <div class="col-12 md:col-4">
+            <p:outputLabel for="quantidadeForm" value="Quantidade" styleClass="form-layout-label"/>
+            <p:inputText id="quantidadeForm" value="#{vagasManagedView.vagasVO.quantidade}" styleClass="form-layout-value"/>
+            <p:message for="quantidadeForm"/>
+        </div>
+
+        <p:spacer height="20"/>
+
+        <div class="col-12 md:col-4">
+            <p:outputLabel for="inicioForm" value="Inicio" styleClass="form-layout-label"/>
+            <p:datePicker id="inicioForm"
+                          styleClass="filtro-layout-value"
+                          monthNavigator="true"
+                          yearNavigator="true"
+                          showWeek="true"
+                          value="#{vagasManagedView.vagasVO.inicio}"
+                          mindate="#{vagasManagedView.dataAtual}"
+                          showButtonBar="true"
+            />
+        </div>
+
+        <p:spacer height="20"/>
+
+        <div class="col-12 md:col-4">
+            <p:outputLabel for="fimForm" value="Fim" styleClass="form-layout-label"/>
+            <p:datePicker id="fimForm"
+                          styleClass="filtro-layout-value"
+                          monthNavigator="true"
+                          yearNavigator="true"
+                          showWeek="true"
+                          value="#{vagasManagedView.vagasVO.fim}"
+                          mindate="#{vagasManagedView.dataAtual}"
+                          showButtonBar="true"
+            />
+        </div>
+    </ui:define>
+
+    <ui:define name="areaBotoes">
+        <p:commandButton
+                value="Fechar"
+                styleClass="ui-button-flat mr-2"
+                oncomplete="PF('dlg').hide()"
+                action="#{vagasManagedView.clearVagasVO()}"
+                style="width: 5rem" />
+        <p:commandButton
+                value="Salvar"
+                action="#{vagasManagedView.salvarVagas()}"
+                style="width: 6rem"
+                update="resultado"
+                oncomplete="PF('dlg').hide(); #{vagasFiltroView.consultar()}"/>
+    </ui:define>
+
+</ui:composition>

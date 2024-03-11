@@ -42,8 +42,11 @@
             <ui:define name="decorFiltroResultado">
                 <h:panelGroup rendered="#{not empty vagasFiltroView.resultado}" class="ui-card">
                     <p:dataTable var="vagas" value="#{vagasFiltroView.resultado}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{vagas.id}" />
+                        <p:column>
+                            <p:commandButton icon="pi pi-pencil"
+                                             action="#{vagasManagedView.setVagasVO(vagas)}"
+                                             update="formDialog"
+                                             oncomplete="PF('dlg').show()"/>
                         </p:column>
 
                         <p:column headerText="Inicio">
@@ -60,6 +63,10 @@
                     </p:dataTable>
                     <br/>
                 </h:panelGroup>
+            </ui:define>
+
+            <ui:define name="decorFiltroModais">
+                <ui:include src="vagasFormModal.xhtml"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

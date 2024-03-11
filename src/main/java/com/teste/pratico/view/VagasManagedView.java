@@ -1,5 +1,6 @@
 package com.teste.pratico.view;
 
+import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.service.VagasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,22 @@ public class VagasManagedView {
     @Autowired
     private VagasService vagasService;
 
+    @Autowired
+    protected MessagesUtil messagesUtil;
+
     private VagasVO vagasVO = new VagasVO();
 
     private Date dataAtual = new Date();
 
     public void salvarVagas() {
-        vagasService.criaNovasVagas(vagasVO);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Solicitante cadastrado."));
+        if (vagasVO.getId() != null) {
+            vagasService.salvarVagas(vagasVO);
+            messagesUtil.addMessageInfo("SUCESSO", "Vagas atualizadas.", "popup");
+        } else {
+            vagasService.criaNovasVagas(vagasVO);
+            messagesUtil.addMessageInfo("SUCESSO", "Vagas cadastradas.", "msg");
+        }
+        clearVagasVO();
     }
 
     public VagasVO getVagasVO() {
@@ -40,5 +50,9 @@ public class VagasManagedView {
 
     public void setDataAtual(Date dataAtual) {
         this.dataAtual = dataAtual;
+    }
+
+    public void clearVagasVO() {
+        vagasVO = new VagasVO();
     }
 }
