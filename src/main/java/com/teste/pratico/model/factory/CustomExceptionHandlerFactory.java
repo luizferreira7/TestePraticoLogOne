@@ -1,4 +1,4 @@
-package com.teste.pratico.factory;
+package com.teste.pratico.model.factory;
 
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;

@@ -1,4 +1,4 @@
-package com.teste.pratico.factory;
+package com.teste.pratico.model.factory;
 
 
 import javax.faces.FacesException;
