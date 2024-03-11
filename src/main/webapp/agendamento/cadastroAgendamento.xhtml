@@ -20,41 +20,41 @@
             </ui:define>
 
             <ui:define name="decorFormCampos">
-                <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="data" value="Data" styleClass="form-layout-label"/>
                     <p:datePicker id="data"
                                   styleClass="form-layout-value"
                                   monthNavigator="true"
                                   yearNavigator="true"
                                   showWeek="true"
+                                  required="true"
                                   value="#{agendamentosManagedView.agendamentoVO.data}"
                                   mindate="#{agendamentosManagedView.dataAtual}"
                                   showButtonBar="true"
                     />
-                </div>
+                <p:message for="data"/>
 
-                <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="numero" value="Numero" styleClass="form-layout-label"/>
-                    <p:inputText id="numero" value="#{agendamentosManagedView.agendamentoVO.numero}" styleClass="form-layout-value"/>
-                </div>
+                    <p:inputText id="numero" required="true" value="#{agendamentosManagedView.agendamentoVO.numero}" styleClass="form-layout-value"/>
+                    <p:message for="numero"/>
 
-                <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="motivo" value="Motivo" styleClass="form-layout-label"/>
-                    <p:inputText id="motivo" value="#{agendamentosManagedView.agendamentoVO.motivo}" styleClass="form-layout-value"/>
-                </div>
+                    <p:inputText id="motivo" required="true" value="#{agendamentosManagedView.agendamentoVO.motivo}" styleClass="form-layout-value"/>
+                    <p:message for="motivo"/>
 
-                <div class="form-layout-campo col-12 md:col-4">
                     <p:outputLabel for="solicitante" value="Solicitante" styleClass="form-layout-label"/>
-                    <p:autoComplete id="solicitante" styleClass="form-layout-value" value="#{agendamentosManagedView.agendamentoVO.solicitante}"
+                    <p:autoComplete id="solicitante" required="true" styleClass="form-layout-value" value="#{agendamentosManagedView.agendamentoVO.solicitante}"
                                     completeMethod="#{solicitantesManagedView.completeSolicitante}"
                                     var="solicitante" itemLabel="#{solicitante.nome}" itemValue="#{solicitante}"
                                     converter="#{solicitanteConverter}" forceSelection="true" scrollHeight="250"/>
-                </div>
+                    <p:message for="solicitante"/>
 
             </ui:define>
 
             <ui:define name="decorFormBotoes">
-                <p:commandButton value="Salvar" action="#{agendamentosManagedView.salvarAgendamento()}"/>
+                <p:commandButton value="Salvar"
+                                 update="grid"
+                                 validateClient="true"
+                                 action="#{agendamentosManagedView.salvarAgendamento()}"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

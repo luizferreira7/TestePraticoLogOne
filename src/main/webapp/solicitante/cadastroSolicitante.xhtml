@@ -21,15 +21,17 @@
 
             <ui:define name="decorFormCampos">
 
-                    <div class="form-layout-campo col-12 md:col-4">
                         <p:outputLabel for="nome" value="Nome" styleClass="form-layout-label"/>
-                        <p:inputText id="nome" value="#{solicitantesManagedView.solicitanteVO.nome}" styleClass="form-layout-value"/>
-                    </div>
+                        <p:inputText id="nome" required="true" value="#{solicitantesManagedView.solicitanteVO.nome}" styleClass="form-layout-value"/>
+                        <p:message for="nome"/>
 
             </ui:define>
 
             <ui:define name="decorFormBotoes">
-                <p:commandButton value="Salvar" action="#{solicitantesManagedView.salvarSolicitante()}"/>
+                <p:commandButton value="Salvar"
+                                 validateClient="true"
+                                 update="grid"
+                                 action="#{solicitantesManagedView.salvarSolicitante()}"/>
             </ui:define>
         </ui:decorate>
     </ui:define>
