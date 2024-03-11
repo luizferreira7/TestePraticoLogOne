@@ -2,6 +2,8 @@ package com.teste.pratico.service;
 
 import com.teste.pratico.model.entity.Agendamento;
 import com.teste.pratico.model.entity.Solicitante;
+import com.teste.pratico.model.exception.DatabaseOperationException;
+import com.teste.pratico.model.exception.ResourceNotFoundException;
 import com.teste.pratico.model.util.CustomMapper;
 import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.repository.AgendamentoRepository;
@@ -10,8 +12,6 @@ import com.teste.pratico.repository.VagasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,18 +33,17 @@ public class AgendamentoService {
 
         Optional<Solicitante> optionalSolicitante = solicitanteRepository.findById(agendamentoVO.getSolicitante().getId());
 
-        if (optionalSolicitante.isPresent() && validarAgendamento(agendamentoVO))
-        {
-            Agendamento agendamento = new Agendamento(agendamentoVO.getData(), agendamentoVO.getNumero(), agendamentoVO.getMotivo(), optionalSolicitante.get());
-
-            agendamentoRepository.save(agendamento);
-
-            info();
-
-            return;
+        if (!optionalSolicitante.isPresent()) {
+            throw new ResourceNotFoundException("solicitante", agendamentoVO.getSolicitante().getNome());
         }
 
-        erro();
+        Agendamento agendamento = new Agendamento(agendamentoVO.getData(), agendamentoVO.getNumero(), agendamentoVO.getMotivo(), optionalSolicitante.get());
+
+        try {
+            agendamentoRepository.save(agendamento);
+        } catch (Exception e) {
+            throw new DatabaseOperationException(e);
+        }
     }
 
     public List<AgendamentoVO> findAgendamentosVO(Date inicio, Date fim) {
@@ -55,21 +54,8 @@ public class AgendamentoService {
 
     public Boolean validarAgendamento(AgendamentoVO agendamentoVO) {
         int quantidadeVagas = vagasRepository.findQuantidadeVagasByData(agendamentoVO.getData());
+        int quantidadeAgendamentos = agendamentoRepository.findQuantidadeAgendamentosByData(agendamentoVO.getData());
 
-        if (quantidadeVagas > 0) {
-            int quantidadeAgendamentos = agendamentoRepository.findQuantidadeAgendamentosByData(agendamentoVO.getData());
-
-            return quantidadeAgendamentos < quantidadeVagas;
-        }
-
-        return false;
-    }
-
-    public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Agendamento cadastrado."));
-    }
-
-    public void erro() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Falha ao cadastrar agendamento."));
+        return quantidadeVagas != 0 && quantidadeAgendamentos < quantidadeVagas;
     }
 }

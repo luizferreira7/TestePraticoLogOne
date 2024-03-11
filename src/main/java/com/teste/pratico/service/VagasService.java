@@ -1,6 +1,7 @@
 package com.teste.pratico.service;
 
 import com.teste.pratico.model.entity.Vagas;
+import com.teste.pratico.model.exception.DatabaseOperationException;
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.repository.VagasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,11 @@ public class VagasService {
 
         Vagas vagas = new Vagas(vagasVO.getInicio(), vagasVO.getFim(), vagasVO.getQuantidade());
 
-        vagasRepository.save(vagas);
+        try {
+            vagasRepository.save(vagas);
+        } catch (Exception e) {
+            throw new DatabaseOperationException(e);
+        }
     }
 
     public List<VagasVO> findVagasVO(Date inicio, Date fim) {

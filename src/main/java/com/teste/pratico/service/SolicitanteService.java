@@ -1,12 +1,15 @@
 package com.teste.pratico.service;
 
 import com.teste.pratico.model.entity.Solicitante;
+import com.teste.pratico.model.exception.DatabaseOperationException;
+import com.teste.pratico.model.exception.ResourceNotFoundException;
 import com.teste.pratico.model.util.CustomMapper;
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.repository.SolicitanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.faces.application.FacesMessage;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +23,11 @@ public class SolicitanteService {
 
         Solicitante solicitante = new Solicitante(solicitanteVO.getNome());
 
-        solicitanteRepository.save(solicitante);
+        try {
+            solicitanteRepository.save(solicitante);
+        } catch (Exception e) {
+            throw new DatabaseOperationException(e);
+        }
     }
 
     public List<SolicitanteVO> findSolicitantesVO(String nome) {
@@ -34,6 +41,6 @@ public class SolicitanteService {
             return CustomMapper.map(optionalSolicitante.get(), SolicitanteVO.class);
         }
 
-        throw new RuntimeException();
+        throw new ResourceNotFoundException("solicitante", id);
     }
 }
