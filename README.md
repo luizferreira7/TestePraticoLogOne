@@ -27,4 +27,31 @@ http://localhost:9292/index.html
 ou clique [aqui](http://localhost:9292/index.html).
 
 ## Detalhes da Implementação do Sistema
+Para conectar o front-end em JSF com o back-end em SpringBoot implementei o arquivo de faces-config.xml para configurar o ELResolver afim de habilitar as expressões ```#{teste.salvar()}``` 
+nos arquivos .xhtml além disso configurei o FacesServlet na classe TestePraticoApplication.java permitindo que o SpringBoot processasse os requests do ciclo de vida do JSF.
+
+### Back-end
+
+No backend decidi utilizar o padrão de Repository extendendo o JpaRepository que por sua vez extende o CrudRepository e já implementa diversos método como ```findById()```, ```save()``` 
+e facilitando a criação de queries em JPQL a já que podemos cria-las a partir de um método com a anotação ```@Query```.
+
+Para as regras de negócio optei por criar Services responsaveis por executar validações e chamar os repositorios para persistência e obtenção de dados.
+
+Como as instruções especificavam que eu não deveria adicionar outros frameworks, não utilizei o Lombok e nenhum framework para mappers, em vez disso implementei
+um CustomMapper a partir do seguinte [artigo](https://medium.com/@halillbaydar/custom-class-mapper-in-java-9f78258c00).
+
+### Front-end
+
+No front-end criei um template base para o projeto que implementa um Header e um Footer, além de permitir facilmente a utilização do mesmo em diversas outras partes do projeto reutilizando componentes.
+
+Optei por seguir um padrão de projeto em que cada entidade possui sua respectitiva página de filtro onde é possivel buscar por entidades já cadastradas e edita-las a partir de um dialog,
+e uma pagina de cadastro que pode ser acessada diretamente pela pagina principal ou pela pagina de filtro, para poder cadastrar as entidades.
+
+Também criei layouts para a pagina de filtro, cadastro (form) e dialog de edição (modalForm) o que permite a reutilização de código para criação de todas as paginas.
+
+### Conexão Back-end e Front-end
+
+A conexão entre o back e o front ocorre a partir da utilização do ELResolver que permite utilizar no front dados que estão em beans gerenciados no back-end,
+adotei o padrão de chamar os beans de ManagedView e FiltroView, também optei por utilizar sempre um ViewObject (VO) represntando a entidade no front para evitar
+trabalhar com a mesma entidade gerenciada diretamente no front.
 
