@@ -43,4 +43,21 @@ public class SolicitanteService {
 
         throw new ResourceNotFoundException("solicitante", id);
     }
+
+    public void salvarSolicitante(SolicitanteVO solicitanteVO) {
+        Optional<Solicitante> optionalSolicitante = solicitanteRepository.findById(solicitanteVO.getId());
+
+        if (!optionalSolicitante.isPresent()) {
+            throw new ResourceNotFoundException("solicitante", solicitanteVO.getId().toString());
+        }
+
+        Solicitante solicitante = optionalSolicitante.get();
+        solicitante.setNome(solicitanteVO.getNome());
+
+        try {
+            solicitanteRepository.save(solicitante);
+        } catch (Exception e) {
+            throw new DatabaseOperationException(e);
+        }
+    }
 }

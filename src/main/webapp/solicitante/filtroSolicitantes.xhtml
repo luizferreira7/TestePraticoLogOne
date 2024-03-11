@@ -13,17 +13,20 @@
         <ui:decorate template="../layout/filtro.xhtml">
             <ui:param name="filtroBean" value="#{solicitantesFiltroView}"/>
             <ui:define name="decorFiltroCampos">
-                <div class="form-layout-campo col-12 md:col-4">
-                    <p:outputLabel for="nome" value="Nome" styleClass="form-layout-label"/>
-                    <p:inputText id="nome" value="#{solicitantesFiltroView.nome}" styleClass="form-layout-value"/>
+                <div class="filtro-layout-campo col-12 md:col-4">
+                    <p:outputLabel for="nome" value="Nome" styleClass="filtro-layout-label"/>
+                    <p:inputText id="nome" value="#{solicitantesFiltroView.nome}" styleClass="filtro-layout-value"/>
                 </div>
             </ui:define>
 
             <ui:define name="decorFiltroResultado">
                 <h:panelGroup rendered="#{not empty solicitantesFiltroView.resultado}" class="ui-card">
                     <p:dataTable var="solicitante" value="#{solicitantesFiltroView.resultado}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{solicitante.id}" />
+                        <p:column>
+                            <p:commandButton icon="pi pi-pencil"
+                                             action="#{solicitantesManagedView.setSolicitanteVO(solicitante)}"
+                                             update="formDialog"
+                                             oncomplete="PF('dlg').show()"/>
                         </p:column>
 
                         <p:column headerText="Inicio">
@@ -32,6 +35,10 @@
                     </p:dataTable>
                     <br/>
                 </h:panelGroup>
+            </ui:define>
+
+            <ui:define name="decorFiltroModais">
+                <ui:include src="solicitanteFormModal.xhtml"/>
             </ui:define>
         </ui:decorate>
     </ui:define>
