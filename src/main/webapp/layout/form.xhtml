@@ -20,10 +20,10 @@
     <ui:insert name="decorFormMenu"/>
 
     <h:form id="form-layout" prependId="false" styleClass="form-layout">
-        <fieldset id="form-layout-campos" class="form-layout-campos">
+        <h:panelGrid id="grid" style="width: 100%; padding-left: 5em; padding-right: 5em" columns="3" cellpadding="7">
             <ui:remove> Área de campos </ui:remove>
             <ui:insert name="decorFormCampos"/>
-        </fieldset>
+        </h:panelGrid>
 
         <ui:remove> Área de botões </ui:remove>
         <div id="form-layout-botoes">
@@ -32,8 +32,8 @@
     </h:form>
 
     <ui:remove> Área de mensagens </ui:remove>
-    <p:outputPanel id="form-layout-mensagens">
-        <p:messages id="messages" showDetail="true" closable="true">
+    <p:outputPanel>
+        <p:messages id="messages" for="msg" showDetail="true" closable="true">
             <p:autoUpdate/>
         </p:messages>
     </p:outputPanel>

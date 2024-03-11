@@ -7,10 +7,14 @@
 <h:head>
     <title>Sistema de Agendamento</title>
     <link type="text/css" rel="stylesheet" href="../css/template.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="../css/filtro.css" media="all" />
     <link type="text/css" rel="stylesheet" href="../css/form.css" media="all" />
     <link rel="shortcut icon" type="image/ico" href="../resources/favicon.ico" />
 </h:head>
 <h:body>
+    <p:growl id="growl" for="popup" showDetail="true">
+        <p:autoUpdate/>
+    </p:growl>
     <div id="wrapper">
         <ui:remove> Área de Cabeçalho e Menu </ui:remove>
         <ui:include src="../layout/header.xhtml" />
