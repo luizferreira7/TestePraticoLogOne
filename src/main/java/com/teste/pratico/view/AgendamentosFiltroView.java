@@ -30,7 +30,7 @@ public class AgendamentosFiltroView extends AbstractFiltro<AgendamentoVO> {
 
     @Override
     public String cadastrar() {
-        return "/cadastroAgendamento.html";
+        return "/agendamento/cadastroAgendamento.html";
     }
 
     @Override

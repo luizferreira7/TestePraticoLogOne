@@ -22,17 +22,15 @@
         </p:outputPanel>
 
         <p:menubar id="menu" styleClass="header-menu-list">
-            <div class="strict">
-                <p:menuitem value="Pagina Inicial" icon="pi pi-fw pi-home" outcome="/index"/>
+            <p:menuitem value="Pagina Inicial" icon="pi pi-fw pi-home" outcome="/index"/>
 
-                <p:menuitem value="Vagas" icon="pi pi-fw pi-list" outcome="/filtroVagas"/>
-                <p:menuitem value="Cadastrar Vagas" icon="pi pi-fw pi-plus" outcome="/cadastroVagas"/>
+            <p:menuitem value="Vagas" icon="pi pi-fw pi-list" outcome="/vagas/filtroVagas"/>
+            <p:menuitem value="Cadastrar Vagas" icon="pi pi-fw pi-plus" outcome="/vagas/cadastroVagas"/>
 
-                <p:menuitem value="Solicitantes" icon="pi pi-fw pi-users" outcome="/filtroSolicitantes"/>
-                <p:menuitem value="Cadastrar Solicitante" icon="pi pi-fw pi-user-plus" outcome="/cadastroSolicitante"/>
+            <p:menuitem value="Solicitantes" icon="pi pi-fw pi-users" outcome="/solicitante/filtroSolicitantes"/>
+            <p:menuitem value="Cadastrar Solicitante" icon="pi pi-fw pi-user-plus" outcome="/solicitante/cadastroSolicitante"/>
 
-                <p:menuitem value="Agendamentos" icon="pi pi-fw pi-calendar" outcome="/filtroAgendamentos"/>
-                <p:menuitem value="Cadastrar Agendamento" icon="pi pi-fw pi-calendar-plus" outcome="/cadastroAgendamento"/>
-            </div>
+            <p:menuitem value="Agendamentos" icon="pi pi-fw pi-calendar" outcome="/agendamento/filtroAgendamentos"/>
+            <p:menuitem value="Cadastrar Agendamento" icon="pi pi-fw pi-calendar-plus" outcome="/agendamento/cadastroAgendamento"/>
         </p:menubar>
 </ui:composition>

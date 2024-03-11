@@ -21,7 +21,7 @@ public class VagasFiltroView extends AbstractFiltro<VagasVO> {
 
     @Override
     public String cadastrar() {
-        return "/cadastroVagas.html";
+        return "/vagas/cadastroVagas.html";
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
 
     @Override
     public String cadastrar() {
-        return "/cadastroSolicitante.html";
+        return "/solicitante/cadastroSolicitante.html";
     }
 
     public String getNome() {
