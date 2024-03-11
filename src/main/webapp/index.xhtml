@@ -10,7 +10,29 @@
 
     <ui:define name="tituloPagina">Pagina Inicial</ui:define>
     <ui:define name="conteudo">
-        <h2>teste</h2>
+        <p:outputPanel style="display: inline-flex; justify-content: space-around; width: 100%; padding-left: 10%; padding-right: 10%">
+            <p:card title="Vagas" style="width: 200px; display: flex; justify-content: center">
+                <p:outputPanel style="width: 100%; display: grid; justify-content: center">
+                    <p:button icon="pi pi-list" outcome="/vagas/filtroVagas" value="Filtro"/>
+                    <p:spacer height="20" width="20"/>
+                    <p:button icon="pi pi-plus" outcome="/vagas/cadastroVagas" value="Cadastro"/>
+                </p:outputPanel>
+            </p:card>
+            <p:card title="Solicitante" style="width: 200px; display: flex; justify-content: center">
+                <p:outputPanel style="width: 100%; display: grid; justify-content: center">
+                    <p:button icon="pi pi-users" outcome="/solicitante/filtroSolicitantes" value="Filtro"/>
+                    <p:spacer width="20" height="20"/>
+                    <p:button icon="pi pi-user-plus" outcome="/solicitante/cadastroSolicitante" value="Cadastro"/>
+                </p:outputPanel>
+            </p:card>
+            <p:card title="Agendamento" style="width: 200px; display: flex; justify-content: center">
+                <p:outputPanel style="width: 100%; display: grid; justify-content: center">
+                    <p:button icon="pi pi-calendar" outcome="/agendamento/filtroAgendamentos" value="Filtro"/>
+                    <p:spacer width="20" height="20"/>
+                    <p:button icon="pi pi-calendar-plus" outcome="/agendamento/cadastroAgendamento" value="Cadastro"/>
+                </p:outputPanel>
+            </p:card>
+        </p:outputPanel>
     </ui:define>
 
 </ui:composition>
