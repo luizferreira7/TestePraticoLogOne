@@ -19,7 +19,7 @@ public abstract class AbstractFiltro<T> {
     public abstract void atualizaResultado();
 
     public void notfound() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Consulta", "Não foi encontrado resultado para sua consulta"));
+        FacesContext.getCurrentInstance().addMessage("messages", new FacesMessage(FacesMessage.SEVERITY_WARN, "Consulta", "Não foi encontrado resultado para sua consulta"));
     }
 
     public String cadastrar() {

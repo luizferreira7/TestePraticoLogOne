@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog header="#{entityId != null ? 'Editar' : 'Cadastrar'}"
+              id="formDialog"
+              widgetVar="dlg"
+              minHeight="40"
+              width="400"
+              showEffect="fade"
+              modal="true">
+        <h:form style="margin: 0">
+            <ui:insert name="areaForm"/>
+
+            <p:spacer height="50"/>
+
+            <p:outputPanel class="ui-dialog-footer ui-widget-content">
+                <ui:insert name="areaBotoes"/>
+            </p:outputPanel>
+        </h:form>
+    </p:dialog>
+</ui:composition>

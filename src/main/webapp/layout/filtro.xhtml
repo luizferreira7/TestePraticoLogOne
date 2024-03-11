@@ -12,6 +12,7 @@
     <ui:remove> Áreas </ui:remove>
     <ui:remove> decorFiltroCampos </ui:remove>
     <ui:remove> decorFiltroResultado </ui:remove>
+    <ui:remove> decorFiltroModais </ui:remove>
 
     <p:menubar>
         <p:menuitem value="Cadastar"
@@ -20,21 +21,21 @@
         />
     </p:menubar>
 
-    <h:form id="form-layout" prependId="false" styleClass="form-layout">
-        <fieldset id="form-layout-campos" class="form-layout-campos">
+    <h:form id="filtro-layout" prependId="false" styleClass="form-layout">
+        <fieldset id="filtro-layout-campos" class="filtro-layout-campos">
             <ui:remove> Área de campos de busca </ui:remove>
             <ui:insert name="decorFiltroCampos" />
         </fieldset>
 
         <ui:remove> Área de botões </ui:remove>
-        <div id="form-layout-botoes">
+        <div id="filtro-layout-botoes">
             <p:commandButton value="Consultar" icon="pi pi-fw pi-search" action="#{filtroBean['consultar']()}" update="resultado"/>
         </div>
     </h:form>
 
     <ui:remove> Área de mensagens </ui:remove>
-    <p:outputPanel id="form-layout-mensagens">
-        <p:messages id="messages" showDetail="true" closable="true">
+    <p:outputPanel>
+        <p:messages id="messages" for="msg" showDetail="true" closable="true">
             <p:autoUpdate/>
         </p:messages>
     </p:outputPanel>
@@ -43,5 +44,7 @@
     <h:panelGroup id="resultado">
         <ui:insert name="decorFiltroResultado" />
     </h:panelGroup>
+
+    <ui:insert name="decorFiltroModais"/>
 
 </ui:composition>
