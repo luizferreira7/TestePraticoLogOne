@@ -3,7 +3,6 @@ package com.teste.pratico.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity

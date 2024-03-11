@@ -7,8 +7,6 @@ import com.teste.pratico.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.ManagedBean;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.util.Date;
 

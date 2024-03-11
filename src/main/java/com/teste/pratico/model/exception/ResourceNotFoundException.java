@@ -1,8 +1,6 @@
 package com.teste.pratico.model.exception;
 
 
-import javax.faces.application.FacesMessage;
-
 public class ResourceNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 5734873068561247798L;

@@ -21,7 +21,7 @@ java -jar -Dserver.port=9292 target/Teste-Pratico-Desenvolvedor-Java-0.0.1-SNAPS
 ```
 
 Acesse o sistema em seu browser a partir da url:
-```http request
+```url
 http://localhost:9292/index.html
 ```
 ou clique [aqui](http://localhost:9292/index.html).

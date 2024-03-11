@@ -1,12 +1,9 @@
 package com.teste.pratico.model.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Locale;
 import java.util.Objects;
 
 @MappedSuperclass
