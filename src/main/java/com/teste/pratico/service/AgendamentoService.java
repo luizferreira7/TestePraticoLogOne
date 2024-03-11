@@ -66,4 +66,31 @@ public class AgendamentoService {
 
         return quantidadeVagas != 0 && quantidadeAgendamentos < quantidadeVagas;
     }
+
+    public void salvarAgendamento(AgendamentoVO agendamentoVO) {
+        Optional<Agendamento> optionalAgendamento = agendamentoRepository.findById(agendamentoVO.getId());
+
+        if (!optionalAgendamento.isPresent()) {
+            throw new ResourceNotFoundException("agendamento", agendamentoVO.getId().toString());
+        }
+
+        Agendamento agendamento = optionalAgendamento.get();
+        agendamento.setData(agendamentoVO.getData());
+        agendamento.setMotivo(agendamentoVO.getMotivo());
+        agendamento.setNumero(agendamentoVO.getNumero());
+
+        Optional<Solicitante> optionalSolicitante = solicitanteRepository.findById(agendamentoVO.getSolicitante().getId());
+
+        if (!optionalSolicitante.isPresent()) {
+            throw new ResourceNotFoundException("solicitante", agendamentoVO.getSolicitante().getNome());
+        }
+
+        agendamento.setSolicitante(optionalSolicitante.get());
+
+        try {
+            agendamentoRepository.save(agendamento);
+        } catch (Exception e) {
+            throw new DatabaseOperationException(e);
+        }
+    }
 }

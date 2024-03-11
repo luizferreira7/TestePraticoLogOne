@@ -42,8 +42,11 @@
             <ui:define name="decorFiltroResultado">
                 <h:panelGroup rendered="#{not empty agendamentosFiltroView.resultado}" class="ui-card">
                     <p:dataTable var="agendamento" value="#{agendamentosFiltroView.resultado}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{agendamento.id}" />
+                        <p:column>
+                            <p:commandButton icon="pi pi-pencil"
+                                             action="#{agendamentosManagedView.setAgendamentoVO(agendamento)}"
+                                             update="formDialog"
+                                             oncomplete="PF('dlg').show()"/>
                         </p:column>
 
                         <p:column headerText="Data">
@@ -64,6 +67,10 @@
                     </p:dataTable>
                     <br/>
                 </h:panelGroup>
+            </ui:define>
+
+            <ui:define name="decorFiltroModais">
+                <ui:include src="agendamentoFormModal.xhtml"/>
             </ui:define>
         </ui:decorate>
     </ui:define>

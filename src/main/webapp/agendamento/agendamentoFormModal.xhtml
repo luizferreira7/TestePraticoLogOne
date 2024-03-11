@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="../layout/modalForm.xhtml">
+
+    <ui:param name="entityId" value="#{agendamentosManagedView.agendamentoVO.id}"/>
+
+    <ui:define name="areaForm">
+
+        <div class="col-12 md:col-4">
+            <p:outputLabel for="numero" value="Numero" styleClass="form-layout-label"/>
+            <p:inputText id="numero" value="#{agendamentosManagedView.agendamentoVO.numero}" styleClass="form-layout-value"/>
+        </div>
+
+        <p:spacer height="20"/>
+
+        <div class="col-12 md:col-4">
+            <p:outputLabel for="motivo" value="Motivo" styleClass="form-layout-label"/>
+            <p:inputText id="motivo" value="#{agendamentosManagedView.agendamentoVO.motivo}" styleClass="form-layout-value"/>
+        </div>
+
+        <p:spacer height="20"/>
+
+        <div class="col-12 md:col-4">
+            <p:outputLabel for="data" value="Data" styleClass="form-layout-label"/>
+            <p:datePicker id="data"
+                          styleClass="form-layout-value"
+                          monthNavigator="true"
+                          yearNavigator="true"
+                          showWeek="true"
+                          value="#{agendamentosManagedView.agendamentoVO.data}"
+                          mindate="#{agendamentosManagedView.dataAtual}"
+                          showButtonBar="true"
+            />
+
+            <p:spacer height="20"/>
+
+            <div class="col-12 md:col-4">
+                <p:outputLabel for="solicitante" value="Solicitante" styleClass="form-layout-label"/>
+                <p:autoComplete id="solicitante" styleClass="form-layout-value" value="#{agendamentosManagedView.agendamentoVO.solicitante}"
+                                completeMethod="#{solicitantesManagedView.completeSolicitante}"
+                                var="solicitante" itemLabel="#{solicitante.nome}" itemValue="#{solicitante}"
+                                converter="#{solicitanteConverter}" forceSelection="true" scrollHeight="250"/>
+            </div>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="areaBotoes">
+        <p:commandButton
+                value="Fechar"
+                styleClass="ui-button-flat mr-2"
+                action="#{agendamentosManagedView.clearAgendamentoVO()}"
+                oncomplete="PF('dlg').hide()"
+                style="width: 5rem" />
+        <p:commandButton
+                value="Salvar"
+                action="#{agendamentosManagedView.salvarAgendamento()}"
+                style="width: 6rem"
+                update="resultado"
+                oncomplete="PF('dlg').hide(); #{agendamentosFiltroView.consultar()}"/>
+    </ui:define>
+</ui:composition>

@@ -1,12 +1,11 @@
 package com.teste.pratico.view;
 
+import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.service.SolicitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.ManagedBean;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.util.List;
 
@@ -17,11 +16,20 @@ public class SolicitantesManagedView {
     @Autowired
     private SolicitanteService solicitanteService;
 
+    @Autowired
+    protected MessagesUtil messagesUtil;
+
     private SolicitanteVO solicitanteVO = new SolicitanteVO();
 
     public void salvarSolicitante() {
-        solicitanteService.criaNovoSolicitante(solicitanteVO);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Solicitante cadastrado."));
+        if (solicitanteVO.getId() != null) {
+            solicitanteService.salvarSolicitante(solicitanteVO);
+            messagesUtil.addMessageInfo("SUCESSO", "Solicitante atualizado.", "popup");
+        } else{
+            solicitanteService.criaNovoSolicitante(solicitanteVO);
+            messagesUtil.addMessageInfo("SUCESSO", "Solicitante cadastrado.", "msg");
+        }
+        clearSolicitanteVO();
     }
 
     public List<SolicitanteVO> completeSolicitante(String query) {
@@ -35,5 +43,9 @@ public class SolicitantesManagedView {
 
     public void setSolicitanteVO(SolicitanteVO solicitanteVO) {
         this.solicitanteVO = solicitanteVO;
+    }
+
+    public void clearSolicitanteVO() {
+        solicitanteVO = new SolicitanteVO();
     }
 }

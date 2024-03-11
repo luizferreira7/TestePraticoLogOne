@@ -1,6 +1,7 @@
 package com.teste.pratico.view;
 
 import com.teste.pratico.model.enums.ValidationErrorCode;
+import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class AgendamentosManagedView {
     @Autowired
     private AgendamentoService agendamentoService;
 
+    @Autowired
+    protected MessagesUtil messagesUtil;
+
     private AgendamentoVO agendamentoVO = new AgendamentoVO();
 
     private Date dataAtual = new Date();
@@ -25,14 +29,21 @@ public class AgendamentosManagedView {
     public void salvarAgendamento()
     {
         if (!agendamentoService.validarAgendamento(agendamentoVO)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getValor(),
-                    "Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa()));
+            messagesUtil.addMessageWarn(ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getValor(),
+                    "Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa(),
+                    "msg");
             return;
         }
 
-        agendamentoService.criaNovoAgendamento(agendamentoVO);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Agendamento cadastrado."));
+        if (agendamentoVO.getId() != null) {
+            agendamentoService.salvarAgendamento(agendamentoVO);
+            messagesUtil.addMessageInfo("SUCESSO", "Agendamento atualizado.", "popup");
+        } else {
+            agendamentoService.criaNovoAgendamento(agendamentoVO);
+            messagesUtil.addMessageInfo("SUCESSO", "Agendamento cadastrado.", "msg");
+        }
+
+        clearAgendamentoVO();
     }
 
     public AgendamentoVO getAgendamentoVO() {
@@ -49,5 +60,9 @@ public class AgendamentosManagedView {
 
     public void setDataAtual(Date dataAtual) {
         this.dataAtual = dataAtual;
+    }
+
+    public void clearAgendamentoVO() {
+        agendamentoVO = new AgendamentoVO();
     }
 }
