@@ -1,10 +1,13 @@
 package com.teste.pratico.view;
 
+import com.teste.pratico.model.enums.ValidationErrorCode;
 import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.ManagedBean;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.util.Date;
 
@@ -19,8 +22,15 @@ public class AgendamentosManagedView {
 
     private Date dataAtual = new Date();
 
-    public void salvarAgendamento() {
+    public void salvarAgendamento()
+    {
+        if (!agendamentoService.validarAgendamento(agendamentoVO)) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getValor(), "Erro na validação, cause: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa()));
+            return;
+        }
+
         agendamentoService.criaNovoAgendamento(agendamentoVO);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Agendamento cadastrado."));
     }
 
     public AgendamentoVO getAgendamentoVO() {

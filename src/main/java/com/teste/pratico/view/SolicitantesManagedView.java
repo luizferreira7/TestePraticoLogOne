@@ -19,14 +19,9 @@ public class SolicitantesManagedView {
 
     private SolicitanteVO solicitanteVO = new SolicitanteVO();
 
-
-    public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Solicitante cadastrado."));
-    }
-
     public void salvarSolicitante() {
         solicitanteService.criaNovoSolicitante(solicitanteVO);
-        info();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Solicitante cadastrado."));
     }
 
     public List<SolicitanteVO> completeSolicitante(String query) {

@@ -21,13 +21,9 @@ public class VagasManagedView {
 
     private Date dataAtual = new Date();
 
-    public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Vagas cadastradas."));
-    }
-
     public void salvarVagas() {
         vagasService.criaNovasVagas(vagasVO);
-        info();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Solicitante cadastrado."));
     }
 
     public VagasVO getVagasVO() {
