@@ -6,6 +6,7 @@ body {
 
 #wrapper {
     height: 92%;
+    overflow-y: auto;
 }
 
 #footer {
@@ -46,7 +47,7 @@ body {
 #header {
     color: #666666;
     height: 10vh;
-    background: #2b7cee;
+    background: #2a68e1;
 }
 
 #header .strict {
