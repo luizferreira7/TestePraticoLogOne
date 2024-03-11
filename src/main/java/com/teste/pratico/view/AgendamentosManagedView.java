@@ -25,7 +25,9 @@ public class AgendamentosManagedView {
     public void salvarAgendamento()
     {
         if (!agendamentoService.validarAgendamento(agendamentoVO)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getValor(), "Erro na validação, cause: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getValor(),
+                    "Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa()));
             return;
         }
 
