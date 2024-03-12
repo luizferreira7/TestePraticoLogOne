@@ -29,7 +29,7 @@ public class VagasManagedView {
             messagesUtil.addMessageInfo("SUCESSO", "Vagas atualizadas.", "popup");
         } else {
             vagasService.criaNovasVagas(vagasVO);
-            messagesUtil.addMessageInfo("SUCESSO", "Vagas cadastradas.", "msg");
+            messagesUtil.addMessageInfo("Vagas cadastradas com sucesso.", null, "msg");
         }
         clearVagasVO();
     }

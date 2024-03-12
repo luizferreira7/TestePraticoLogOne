@@ -27,9 +27,7 @@ public class AgendamentosManagedView {
     public void salvarAgendamento()
     {
         if (!agendamentoService.validarAgendamento(agendamentoVO)) {
-            messagesUtil.addMessageWarn(ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getValor(),
-                    "Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa(),
-                    "msg");
+            messagesUtil.addMessageWarn("Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa(), null, "msg");
             return;
         }
 
@@ -38,7 +36,7 @@ public class AgendamentosManagedView {
             messagesUtil.addMessageInfo("SUCESSO", "Agendamento atualizado.", "popup");
         } else {
             agendamentoService.criaNovoAgendamento(agendamentoVO);
-            messagesUtil.addMessageInfo("SUCESSO", "Agendamento cadastrado.", "msg");
+            messagesUtil.addMessageInfo("Agendamento cadastrado com sucesso.", null, "msg");
         }
 
         clearAgendamentoVO();
