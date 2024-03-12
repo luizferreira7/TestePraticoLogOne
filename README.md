@@ -57,4 +57,5 @@ trabalhar com a mesma entidade gerenciada diretamente no front.
 
 ### Testes
 
-Optei por não implementa-los pois acredito que para além dos testes unitários seria necessário a utilização de outros frameworks e talvez até a utilziação de um banco como H2.
+Optei por não implementa-los pois acredito que para além dos testes unitários seria necessário a utilização de outros frameworks e talvez até a utilziação de um banco como H2 (Nunca utilizei o HSQLDB para testes),
+para testes de persistência de dados. Como também nunca fiz testes de integração com SpringBoot + JSF, não consegui encontrar uma boa forma no tempo para realização do desafio.
