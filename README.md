@@ -27,7 +27,7 @@ http://localhost:9292/index.html
 ou clique [aqui](http://localhost:9292/index.html).
 
 ## Detalhes da Implementação do Sistema
-Para conectar o front-end em JSF com o back-end em SpringBoot implementei o arquivo de faces-config.xml para configurar o ELResolver afim de habilitar as expressões ```#{teste.salvar()}``` 
+Para conectar o front-end em JSF com o back-end em SpringBoot implementei o arquivo de faces-config.xml para configurar o ELResolver a fim de habilitar as expressões ```#{teste.salvar()}``` 
 nos arquivos .xhtml além disso configurei o FacesServlet na classe TestePraticoApplication.java permitindo que o SpringBoot processasse os requests do ciclo de vida do JSF.
 
 ### Back-end
@@ -37,7 +37,7 @@ e facilitando a criação de queries em JPQL a já que podemos cria-las a partir
 
 Para as regras de negócio optei por criar Services responsaveis por executar validações e chamar os repositorios para persistência e obtenção de dados.
 
-Como as instruções especificavam que eu não deveria adicionar outros frameworks, não utilizei o Lombok e nenhum framework para mappers, em vez disso implementei
+Como as instruções especificavam que eu não deveria adicionar outros frammeworks, não utilizei o Lombok e nenhum framework para mappers, em vez disso implementei
 um CustomMapper a partir do seguinte [artigo](https://medium.com/@halillbaydar/custom-class-mapper-in-java-9f78258c00).
 
 ### Front-end
@@ -55,3 +55,6 @@ A conexão entre o back e o front ocorre a partir da utilização do ELResolver 
 adotei o padrão de chamar os beans de ManagedView e FiltroView, também optei por utilizar sempre um ViewObject (VO) represntando a entidade no front para evitar
 trabalhar com a mesma entidade gerenciada diretamente no front.
 
+### Testes
+
+Optei por não implementa-los pois acredito que para além dos testes unitários seria necessário a utilização de outros frameworks e talvez até a utilziação de um banco como H2.
