@@ -1,3 +1,7 @@
+:root {
+    --main-bg-color: #2196f3;
+}
+
 body {
     height: 100%;
     width: 100%;
@@ -13,7 +17,7 @@ body {
     position: relative;
     height: 8%;
     color: #f8f6f6;
-    background-color: #2b3d8a;
+    background-color: var(--main-bg-color);
     clear: both;
 }
 
@@ -49,7 +53,7 @@ body {
 #header {
     color: #666666;
     height: 10vh;
-    background: #2b3d8a;
+    background: var(--main-bg-color);
 }
 
 #header .strict {
