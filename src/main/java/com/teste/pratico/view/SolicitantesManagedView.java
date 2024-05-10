@@ -29,7 +29,7 @@ public class SolicitantesManagedView {
             solicitanteService.salvarSolicitante(solicitanteVO);
             messagesUtil.addMessageInfo("SUCESSO", "Solicitante atualizado.", "popup");
         } else{
-            solicitanteService.criaNovoSolicitante(solicitanteVO);
+            solicitanteService.criarNovoSolicitante(solicitanteVO);
             messagesUtil.addMessageInfo("Solicitante cadastrado com sucesso.", null, "msg");
         }
         clearSolicitanteVO();

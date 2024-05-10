@@ -4,19 +4,17 @@ import com.teste.pratico.model.entity.Agendamento;
 import com.teste.pratico.model.entity.Solicitante;
 import com.teste.pratico.model.exception.DatabaseOperationException;
 import com.teste.pratico.model.exception.ResourceNotFoundException;
-import com.teste.pratico.model.util.CustomMapper;
 import com.teste.pratico.model.vo.AgendamentoVO;
-import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.repository.AgendamentoRepository;
 import com.teste.pratico.repository.SolicitanteRepository;
 import com.teste.pratico.repository.VagasRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,15 +26,17 @@ public class AgendamentoService {
 
     private final VagasRepository vagasRepository;
 
-    public void criaNovoAgendamento(AgendamentoVO agendamentoVO) {
+    private final ModelMapper modelMapper;
 
+    public void criarNovoAgendamento(AgendamentoVO agendamentoVO)
+    {
         Optional<Solicitante> optionalSolicitante = solicitanteRepository.findById(agendamentoVO.getSolicitante().getId());
 
-        if (!optionalSolicitante.isPresent()) {
+        if (optionalSolicitante.isEmpty()) {
             throw new ResourceNotFoundException("solicitante", agendamentoVO.getSolicitante().getNome());
         }
 
-        Agendamento agendamento = new Agendamento(agendamentoVO.getData(), agendamentoVO.getNumero(), agendamentoVO.getMotivo(), optionalSolicitante.get());
+        Agendamento agendamento = modelMapper.map(agendamentoVO, Agendamento.class);
 
         try {
             agendamentoRepository.save(agendamento);
@@ -48,14 +48,7 @@ public class AgendamentoService {
     public List<AgendamentoVO> findAgendamentosVO(Date inicio, Date fim) {
         List<Agendamento> agendamentos = agendamentoRepository.findAgendamentoByInicioAndFim(inicio, fim);
 
-        return agendamentos.stream().map(a -> {
-            AgendamentoVO agendamentoVO = CustomMapper.map(a, AgendamentoVO.class);
-            SolicitanteVO solicitanteVO = CustomMapper.map(a.getSolicitante(), SolicitanteVO.class);
-
-            agendamentoVO.setSolicitante(solicitanteVO);
-
-            return agendamentoVO;
-        }).collect(Collectors.toList());
+        return agendamentos.stream().map(a -> modelMapper.map(a, AgendamentoVO.class)).toList();
     }
 
     public Boolean validarAgendamento(AgendamentoVO agendamentoVO) {
@@ -68,18 +61,17 @@ public class AgendamentoService {
     public void salvarAgendamento(AgendamentoVO agendamentoVO) {
         Optional<Agendamento> optionalAgendamento = agendamentoRepository.findById(agendamentoVO.getId());
 
-        if (!optionalAgendamento.isPresent()) {
+        if (optionalAgendamento.isEmpty()) {
             throw new ResourceNotFoundException("agendamento", agendamentoVO.getId().toString());
         }
 
         Agendamento agendamento = optionalAgendamento.get();
-        agendamento.setData(agendamentoVO.getData());
-        agendamento.setMotivo(agendamentoVO.getMotivo());
-        agendamento.setNumero(agendamentoVO.getNumero());
+
+        modelMapper.map(agendamentoVO, agendamento);
 
         Optional<Solicitante> optionalSolicitante = solicitanteRepository.findById(agendamentoVO.getSolicitante().getId());
 
-        if (!optionalSolicitante.isPresent()) {
+        if (optionalSolicitante.isEmpty()) {
             throw new ResourceNotFoundException("solicitante", agendamentoVO.getSolicitante().getNome());
         }
 

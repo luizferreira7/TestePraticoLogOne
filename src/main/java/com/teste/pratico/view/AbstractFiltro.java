@@ -14,14 +14,14 @@ public abstract class AbstractFiltro<T> {
     private List<T> resultado;
 
     public void consultar() {
-        atualizaResultado();
+        atualizarResultado();
 
         if (getResultado().isEmpty()) {
             notfound();
         }
     }
 
-    public abstract void atualizaResultado();
+    public abstract void atualizarResultado();
 
     public void notfound() {
         FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_WARN, "Não foi encontrado nenhum resultado para sua consulta.", null));

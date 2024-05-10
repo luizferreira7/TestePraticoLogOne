@@ -21,7 +21,7 @@ public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
     private String nome;
 
     @Override
-    public void atualizaResultado() {
+    public void atualizarResultado() {
         setResultado(solicitanteService.findSolicitantesVO(nome));
     }
 

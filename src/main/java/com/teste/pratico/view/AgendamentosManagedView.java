@@ -38,7 +38,7 @@ public class AgendamentosManagedView {
             agendamentoService.salvarAgendamento(agendamentoVO);
             messagesUtil.addMessageInfo("SUCESSO", "Agendamento atualizado.", "popup");
         } else {
-            agendamentoService.criaNovoAgendamento(agendamentoVO);
+            agendamentoService.criarNovoAgendamento(agendamentoVO);
             messagesUtil.addMessageInfo("Agendamento cadastrado com sucesso.", null, "msg");
         }
 

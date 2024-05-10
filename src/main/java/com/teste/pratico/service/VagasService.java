@@ -6,6 +6,7 @@ import com.teste.pratico.model.exception.ResourceNotFoundException;
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.repository.VagasRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -18,8 +19,9 @@ public class VagasService {
 
     private final VagasRepository vagasRepository;
 
-    public void criaNovasVagas(VagasVO vagasVO) {
+    private final ModelMapper modelMapper;
 
+    public void criarNovaVagas(VagasVO vagasVO) {
         Vagas vagas = new Vagas(vagasVO.getInicio(), vagasVO.getFim(), vagasVO.getQuantidade());
 
         try {
@@ -32,14 +34,13 @@ public class VagasService {
     public void salvarVagas(VagasVO vagasVO) {
         Optional<Vagas> optionalVagas = vagasRepository.findById(vagasVO.getId());
 
-        if (!optionalVagas.isPresent()) {
+        if (optionalVagas.isEmpty()) {
             throw new ResourceNotFoundException("vagas", vagasVO.getId().toString());
         }
 
         Vagas vagas = optionalVagas.get();
-        vagas.setQuantidade(vagasVO.getQuantidade());
-        vagas.setInicio(vagasVO.getInicio());
-        vagas.setFim(vagasVO.getFim());
+
+        modelMapper.map(vagasVO, vagas);
 
         try {
             vagasRepository.save(vagas);

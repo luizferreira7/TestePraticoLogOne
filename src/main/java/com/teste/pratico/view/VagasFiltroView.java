@@ -29,7 +29,7 @@ public class VagasFiltroView extends AbstractFiltro<VagasVO> {
     }
 
     @Override
-    public void atualizaResultado() {
+    public void atualizarResultado() {
         setResultado(vagasService.findVagasVO(inicio, fim));
     }
 

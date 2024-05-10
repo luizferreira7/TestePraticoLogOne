@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 
-    private ExceptionHandler parent;
+    private final ExceptionHandler parent;
 
     public CustomExceptionHandler(ExceptionHandler parent) {
         this.parent = parent;

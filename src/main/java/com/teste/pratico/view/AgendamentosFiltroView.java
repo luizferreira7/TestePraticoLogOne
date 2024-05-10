@@ -37,7 +37,7 @@ public class AgendamentosFiltroView extends AbstractFiltro<AgendamentoVO> {
     }
 
     @Override
-    public void atualizaResultado() {
+    public void atualizarResultado() {
         setResultado(agendamentoService.findAgendamentosVO(inicio, fim));
     }
 }
