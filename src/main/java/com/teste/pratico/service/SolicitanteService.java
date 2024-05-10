@@ -6,17 +6,17 @@ import com.teste.pratico.model.exception.ResourceNotFoundException;
 import com.teste.pratico.model.util.CustomMapper;
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.repository.SolicitanteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SolicitanteService {
 
-    @Autowired
-    private SolicitanteRepository solicitanteRepository;
+    private final SolicitanteRepository solicitanteRepository;
 
     public void criaNovoSolicitante(SolicitanteVO solicitanteVO) {
 

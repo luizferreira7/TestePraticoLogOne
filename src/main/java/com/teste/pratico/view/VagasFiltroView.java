@@ -2,18 +2,22 @@ package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.service.VagasService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 import java.util.Date;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @ManagedBean
 @ViewScoped
 public class VagasFiltroView extends AbstractFiltro<VagasVO> {
 
-    @Autowired
-    private VagasService vagasService;
+    private final VagasService vagasService;
 
     private Date inicio;
 
@@ -29,19 +33,4 @@ public class VagasFiltroView extends AbstractFiltro<VagasVO> {
         setResultado(vagasService.findVagasVO(inicio, fim));
     }
 
-    public Date getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    public Date getFim() {
-        return fim;
-    }
-
-    public void setFim(Date fim) {
-        this.fim = fim;
-    }
 }

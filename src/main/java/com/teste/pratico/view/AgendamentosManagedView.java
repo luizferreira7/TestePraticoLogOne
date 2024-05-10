@@ -4,21 +4,24 @@ import com.teste.pratico.model.enums.ValidationErrorCode;
 import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.service.AgendamentoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 import java.util.Date;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @ManagedBean
 @ViewScoped
 public class AgendamentosManagedView {
 
-    @Autowired
-    private AgendamentoService agendamentoService;
+    private final AgendamentoService agendamentoService;
 
-    @Autowired
-    protected MessagesUtil messagesUtil;
+    private final MessagesUtil messagesUtil;
 
     private AgendamentoVO agendamentoVO = new AgendamentoVO();
 
@@ -40,22 +43,6 @@ public class AgendamentosManagedView {
         }
 
         clearAgendamentoVO();
-    }
-
-    public AgendamentoVO getAgendamentoVO() {
-        return agendamentoVO;
-    }
-
-    public void setAgendamentoVO(AgendamentoVO agendamentoVO) {
-        this.agendamentoVO = agendamentoVO;
-    }
-
-    public Date getDataAtual() {
-        return dataAtual;
-    }
-
-    public void setDataAtual(Date dataAtual) {
-        this.dataAtual = dataAtual;
     }
 
     public void clearAgendamentoVO() {

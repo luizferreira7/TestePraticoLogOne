@@ -12,5 +12,5 @@ public interface SolicitanteRepository extends JpaRepository<Solicitante, Long> 
     @Query("select new com.teste.pratico.model.vo.SolicitanteVO(s.id, s.nome) " +
             "from Solicitante s " +
             "where :nome is null or s.nome like %:nome%")
-    public List<SolicitanteVO> findSolicitantesByNome(String nome);
+    List<SolicitanteVO> findSolicitantesByNome(String nome);
 }

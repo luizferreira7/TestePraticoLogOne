@@ -5,7 +5,7 @@ import com.teste.pratico.model.exception.DatabaseOperationException;
 import com.teste.pratico.model.exception.ResourceNotFoundException;
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.repository.VagasRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class VagasService {
 
-    @Autowired
-    private VagasRepository vagasRepository;
+    private final VagasRepository vagasRepository;
 
     public void criaNovasVagas(VagasVO vagasVO) {
 

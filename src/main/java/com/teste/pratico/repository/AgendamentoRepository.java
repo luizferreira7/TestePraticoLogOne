@@ -15,10 +15,10 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
             "where ( (cast(:fim as timestamp) is null or a.data >= :inicio) " +
             "and (cast(:inicio as timestamp) is null or a.data <= :fim) ) " +
             "or a.data BETWEEN :inicio and :fim")
-    public List<Agendamento> findAgendamentoByInicioAndFim(Date inicio, Date fim);
+    List<Agendamento> findAgendamentoByInicioAndFim(Date inicio, Date fim);
 
     @Query("select coalesce(count(a), 0) " +
             "from Agendamento a " +
             "where a.data = :data")
-    public int findQuantidadeAgendamentosByData(Date data);
+    int findQuantidadeAgendamentosByData(Date data);
 }

@@ -2,7 +2,7 @@ package com.teste.pratico.model.converter;
 
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.service.SolicitanteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -14,10 +14,10 @@ import javax.inject.Named;
 
 @Named
 @FacesConverter(value = "solicitanteConverter")
+@RequiredArgsConstructor
 public class SolicitanteConverter implements Converter {
 
-    @Autowired
-    private SolicitanteService solicitanteService;
+    private final SolicitanteService solicitanteService;
 
     @Override
     public SolicitanteVO getAsObject(FacesContext context, UIComponent component, String value) {

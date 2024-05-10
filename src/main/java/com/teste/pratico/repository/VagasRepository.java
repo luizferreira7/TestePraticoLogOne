@@ -14,10 +14,10 @@ public interface VagasRepository extends JpaRepository<Vagas, Long> {
             "from Vagas v " +
             "where (cast(:inicio as timestamp) is null or v.inicio >= :inicio) " +
             "and (cast(:fim as timestamp) is null or v.fim <= :fim) ")
-    public List<VagasVO> findVagasByInicioAndFim(Date inicio, Date fim);
+    List<VagasVO> findVagasByInicioAndFim(Date inicio, Date fim);
 
     @Query("select coalesce(sum(v.quantidade), 0) " +
             "from Vagas v " +
             "where :data between v.inicio and v.fim")
-    public int findQuantidadeVagasByData(Date data);
+    int findQuantidadeVagasByData(Date data);
 }

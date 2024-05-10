@@ -1,10 +1,19 @@
 package com.teste.pratico.model.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Vagas extends AbstractEntity {
 
@@ -15,37 +24,4 @@ public class Vagas extends AbstractEntity {
     private Date fim;
 
     private Integer quantidade;
-
-    public Vagas() {
-    }
-
-    public Vagas(Date inicio, Date fim, Integer quantidade) {
-        this.inicio = inicio;
-        this.fim = fim;
-        this.quantidade = quantidade;
-    }
-
-    public Date getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    public Date getFim() {
-        return fim;
-    }
-
-    public void setFim(Date fim) {
-        this.fim = fim;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
 }

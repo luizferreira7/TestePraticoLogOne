@@ -10,7 +10,7 @@ import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.repository.AgendamentoRepository;
 import com.teste.pratico.repository.SolicitanteRepository;
 import com.teste.pratico.repository.VagasRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,16 +19,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AgendamentoService {
 
-    @Autowired
-    private AgendamentoRepository agendamentoRepository;
+    private final AgendamentoRepository agendamentoRepository;
 
-    @Autowired
-    private SolicitanteRepository solicitanteRepository;
+    private final SolicitanteRepository solicitanteRepository;
 
-    @Autowired
-    private VagasRepository vagasRepository;
+    private final VagasRepository vagasRepository;
 
     public void criaNovoAgendamento(AgendamentoVO agendamentoVO) {
 

@@ -2,17 +2,21 @@ package com.teste.pratico.view;
 
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.service.SolicitanteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @ManagedBean
 @ViewScoped
 public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
 
-    @Autowired
-    private SolicitanteService solicitanteService;
+    private final SolicitanteService solicitanteService;
 
     private String nome;
 
@@ -24,13 +28,5 @@ public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
     @Override
     public String cadastrar() {
         return "/solicitante/cadastroSolicitante.html";
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 }

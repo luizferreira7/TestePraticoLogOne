@@ -3,21 +3,24 @@ package com.teste.pratico.view;
 import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.SolicitanteVO;
 import com.teste.pratico.service.SolicitanteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 import java.util.List;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @ManagedBean
 @ViewScoped
 public class SolicitantesManagedView {
 
-    @Autowired
-    private SolicitanteService solicitanteService;
+    private final SolicitanteService solicitanteService;
 
-    @Autowired
-    protected MessagesUtil messagesUtil;
+    private final MessagesUtil messagesUtil;
 
     private SolicitanteVO solicitanteVO = new SolicitanteVO();
 
@@ -35,14 +38,6 @@ public class SolicitantesManagedView {
     public List<SolicitanteVO> completeSolicitante(String query) {
 
         return solicitanteService.findSolicitantesVO(query);
-    }
-
-    public SolicitanteVO getSolicitanteVO() {
-        return solicitanteVO;
-    }
-
-    public void setSolicitanteVO(SolicitanteVO solicitanteVO) {
-        this.solicitanteVO = solicitanteVO;
     }
 
     public void clearSolicitanteVO() {
