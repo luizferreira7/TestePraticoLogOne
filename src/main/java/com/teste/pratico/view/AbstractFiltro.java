@@ -17,6 +17,12 @@ public abstract class AbstractFiltro<T> {
 
     public abstract void atualizarResultado();
 
+    public void updateConsulta() {
+        if (resultado != null && !resultado.isEmpty()) {
+            this.atualizarResultado();
+        }
+    }
+
     public void consultar() {
         atualizarResultado();
 

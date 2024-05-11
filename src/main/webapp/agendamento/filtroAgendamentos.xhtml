@@ -9,6 +9,11 @@
                 template="../template/template.xhtml">
 
     <ui:define name="tituloPagina">Agendamentos</ui:define>
+
+    <f:metadata>
+        <f:viewAction action="#{agendamentosFiltroView.updateConsulta()}" />
+    </f:metadata>
+
     <ui:define name="conteudo">
         <ui:decorate template="../layout/filtro.xhtml">
             <ui:param name="filtroBean" value="#{agendamentosFiltroView}"/>
