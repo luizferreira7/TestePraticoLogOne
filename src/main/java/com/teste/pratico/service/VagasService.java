@@ -43,13 +43,13 @@ public class VagasService {
         modelMapper.map(vagasVO, vagas);
 
         try {
-            vagasRepository.save(vagas);
+            vagasRepository.saveAndFlush(vagas);
         } catch (Exception e) {
             throw new DatabaseOperationException(e);
         }
     }
 
-    public List<VagasVO> findVagasVO(Date inicio, Date fim) {
-        return vagasRepository.findVagasByInicioAndFim(inicio, fim);
+    public List<VagasVO> findVagasVO(Date inicio, Date fim, Integer quantidade) {
+        return vagasRepository.findVagasByInicioAndFim(inicio, fim, quantidade);
     }
 }

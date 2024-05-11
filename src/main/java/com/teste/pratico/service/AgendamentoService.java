@@ -45,8 +45,8 @@ public class AgendamentoService {
         }
     }
 
-    public List<AgendamentoVO> findAgendamentosVO(Date inicio, Date fim) {
-        List<Agendamento> agendamentos = agendamentoRepository.findAgendamentoByInicioAndFim(inicio, fim);
+    public List<AgendamentoVO> findAgendamentosVO(Date inicio, Date fim, String numero, String motivo) {
+        List<Agendamento> agendamentos = agendamentoRepository.findAgendamentoByInicioAndFim(inicio, fim, numero, motivo);
 
         return agendamentos.stream().map(a -> modelMapper.map(a, AgendamentoVO.class)).toList();
     }
@@ -78,7 +78,7 @@ public class AgendamentoService {
         agendamento.setSolicitante(optionalSolicitante.get());
 
         try {
-            agendamentoRepository.save(agendamento);
+            agendamentoRepository.saveAndFlush(agendamento);
         } catch (Exception e) {
             throw new DatabaseOperationException(e);
         }

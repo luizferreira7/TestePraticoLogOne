@@ -60,7 +60,7 @@ public class SolicitanteService {
         solicitante.setNome(solicitanteVO.getNome());
 
         try {
-            solicitanteRepository.save(solicitante);
+            solicitanteRepository.saveAndFlush(solicitante);
         } catch (Exception e) {
             throw new DatabaseOperationException(e);
         }
