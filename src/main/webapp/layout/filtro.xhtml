@@ -19,6 +19,11 @@
                     icon="pi pi-fw pi-plus"
                     outcome="#{filtroBean['cadastrar']()}"
         />
+        <p:menuitem value="Limpar"
+                    icon="pi pi-fw pi-refresh"
+                    action="#{filtroBean['clearFiltro']()}"
+                    update="filtro-layout,resultado"
+        />
     </p:menubar>
 
     <h:form id="filtro-layout" prependId="false" styleClass="form-layout">
