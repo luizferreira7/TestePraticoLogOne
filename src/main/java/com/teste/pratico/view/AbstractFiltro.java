@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,8 +12,6 @@ import java.util.List;
 public abstract class AbstractFiltro<T> {
 
     private List<T> resultado;
-
-    public abstract void preencherConsulta(T t);
 
     public abstract void clearFiltro();
 
@@ -34,10 +31,5 @@ public abstract class AbstractFiltro<T> {
 
     public String cadastrar() {
         return "";
-    }
-
-    public void atualizarFiltroPosCadastro(T t) {
-        this.preencherConsulta(t);
-        this.atualizarResultado();
     }
 }

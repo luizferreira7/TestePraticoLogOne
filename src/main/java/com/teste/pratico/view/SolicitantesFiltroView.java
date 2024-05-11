@@ -22,11 +22,6 @@ public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
     private String nome;
 
     @Override
-    public void preencherConsulta(SolicitanteVO solicitanteVO) {
-        this.nome = solicitanteVO.getNome();
-    }
-
-    @Override
     public void clearFiltro() {
         setResultado(new ArrayList<>());
         this.nome = null;

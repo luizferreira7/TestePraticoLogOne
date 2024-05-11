@@ -9,6 +9,11 @@
                 template="../template/template.xhtml">
 
     <ui:define name="tituloPagina">Cadastrar Vagas</ui:define>
+
+    <f:metadata>
+        <f:viewAction action="#{vagasManagedView.clearEntidades()}" />
+    </f:metadata>
+
     <ui:define name="conteudo">
         <ui:decorate template="../layout/form.xhtml">
             <ui:define name="decorFormMenu">
@@ -57,11 +62,30 @@
 
             <ui:define name="decorFormBotoes">
                 <p:commandButton value="Salvar"
-                                 update="grid"
+                                 update="grid novasVagas"
                                  validateClient="true"
-                                 action="#{vagasFiltroView.atualizarFiltroPosCadastro(vagasManagedView.vagasVO)}">
-                    <f:actionListener binding="#{vagasManagedView.salvarVagas()}" />
-                </p:commandButton>
+                                 action="#{vagasManagedView.salvar()}"
+                />
+            </ui:define>
+
+            <ui:define name="decorFormOutros">
+                <p:outputPanel id="novasVagas">
+                    <p:dataTable var="vagas"
+                                 rendered="#{not empty vagasManagedView.novasEntidades}"
+                                 value="#{vagasManagedView.novasEntidades}">
+                        <p:column headerText="Inicio">
+                            <h:outputText value="#{vagas.dataInicioExibicao}" />
+                        </p:column>
+
+                        <p:column headerText="Fim">
+                            <h:outputText value="#{vagas.dataFimExibicao}" />
+                        </p:column>
+
+                        <p:column headerText="Quantidade">
+                            <h:outputText value="#{vagas.quantidade}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
             </ui:define>
         </ui:decorate>
     </ui:define>

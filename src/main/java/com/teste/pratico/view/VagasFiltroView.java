@@ -32,13 +32,6 @@ public class VagasFiltroView extends AbstractFiltro<VagasVO> {
     }
 
     @Override
-    public void preencherConsulta(VagasVO vagasVO) {
-        this.inicio = vagasVO.getInicio();
-        this.fim = vagasVO.getFim();
-        this.quantidade = vagasVO.getQuantidade();
-    }
-
-    @Override
     public void atualizarResultado() {
         setResultado(vagasService.findVagasVO(inicio, fim, quantidade));
     }

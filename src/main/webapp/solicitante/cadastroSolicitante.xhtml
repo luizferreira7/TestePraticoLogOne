@@ -9,6 +9,11 @@
                 template="../template/template.xhtml">
 
     <ui:define name="tituloPagina">Cadastrar Solicitante</ui:define>
+
+    <f:metadata>
+        <f:viewAction action="#{solicitantesManagedView.clearEntidades()}" />
+    </f:metadata>
+
     <ui:define name="conteudo">
         <ui:decorate template="../layout/form.xhtml">
             <ui:define name="decorFormMenu">
@@ -30,10 +35,20 @@
             <ui:define name="decorFormBotoes">
                 <p:commandButton value="Salvar"
                                  validateClient="true"
-                                 update="grid"
-                                 action="#{solicitantesFiltroView.atualizarFiltroPosCadastro(solicitantesManagedView.solicitanteVO)}">
-                    <f:actionListener binding="#{solicitantesManagedView.salvarSolicitante()}" />
-                </p:commandButton>
+                                 update="grid novosSolicitantes"
+                                 action="#{solicitantesManagedView.salvar()}"/>
+            </ui:define>
+
+            <ui:define name="decorFormOutros">
+                <p:outputPanel id="novosSolicitantes">
+                    <p:dataTable var="solicitante"
+                                 rendered="#{not empty solicitantesManagedView.novasEntidades}"
+                                 value="#{solicitantesManagedView.novasEntidades}">
+                        <p:column headerText="Inicio">
+                            <h:outputText value="#{solicitante.nome}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
             </ui:define>
         </ui:decorate>
     </ui:define>

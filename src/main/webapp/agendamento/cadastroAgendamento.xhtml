@@ -9,6 +9,11 @@
                 template="../template/template.xhtml">
 
     <ui:define name="tituloPagina">Cadastrar Agendamento</ui:define>
+
+    <f:metadata>
+        <f:viewAction action="#{agendamentosManagedView.clearEntidades()}" />
+    </f:metadata>
+
     <ui:define name="conteudo">
         <ui:decorate template="../layout/form.xhtml">
             <ui:define name="decorFormMenu">
@@ -52,11 +57,33 @@
 
             <ui:define name="decorFormBotoes">
                 <p:commandButton value="Salvar"
-                                 update="grid"
+                                 update="grid novosAgendamentos"
                                  validateClient="true"
-                                 action="#{agendamentosFiltroView.atualizarFiltroPosCadastro(agendamentosManagedView.agendamentoVO)}">
-                    <f:actionListener binding="#{agendamentosManagedView.salvarAgendamento()}"/>
-                </p:commandButton>
+                                 action="#{agendamentosManagedView.salvar()}"/>
+            </ui:define>
+
+            <ui:define name="decorFormOutros">
+                <p:outputPanel id="novosAgendamentos">
+                    <p:dataTable var="agendamento"
+                                 rendered="#{not empty agendamentosManagedView.novasEntidades}"
+                                 value="#{agendamentosManagedView.novasEntidades}">
+                        <p:column headerText="Data">
+                            <h:outputText value="#{agendamento.dataExibicao}" />
+                        </p:column>
+
+                        <p:column headerText="Numero">
+                            <h:outputText value="#{agendamento.numero}" />
+                        </p:column>
+
+                        <p:column headerText="Motivo">
+                            <h:outputText value="#{agendamento.motivo}" />
+                        </p:column>
+
+                        <p:column headerText="Solicitante">
+                            <h:outputText value="#{agendamento.solicitante.nome}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -5,7 +5,6 @@ import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.AgendamentoVO;
 import com.teste.pratico.service.AgendamentoService;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.annotation.ManagedBean;
@@ -14,34 +13,37 @@ import java.util.Date;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @ManagedBean
 @ViewScoped
-public class AgendamentosManagedView {
+public class AgendamentosManagedView extends AbstractManagedView<AgendamentoVO> {
 
     private final AgendamentoService agendamentoService;
-
-    private final MessagesUtil messagesUtil;
 
     private AgendamentoVO agendamentoVO = new AgendamentoVO();
 
     private Date dataAtual = new Date();
 
-    public void salvarAgendamento()
+    public AgendamentosManagedView(MessagesUtil messagesUtil, AgendamentoService agendamentoService) {
+        super(messagesUtil);
+        this.agendamentoService = agendamentoService;
+    }
+
+    public void salvar()
     {
         if (!agendamentoService.validarAgendamento(agendamentoVO)) {
-            messagesUtil.renderWarnMessage("Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa());
+            getMessagesUtil().renderWarnMessage("Erro na validação, causa: " + ValidationErrorCode.AGENDAMENTO_NAO_POSSUI_VAGAS.getCausa());
             return;
         }
 
         if (agendamentoVO.getId() != null) {
             agendamentoService.salvarAgendamento(agendamentoVO);
-            messagesUtil.renderInfoPopup("SUCESSO", "Agendamento atualizado.");
-            clearAgendamentoVO();
+            getMessagesUtil().renderInfoPopup("SUCESSO", "Agendamento atualizado.");
         } else {
             agendamentoService.criarNovoAgendamento(agendamentoVO);
-            messagesUtil.renderInfoMessage("Agendamento cadastrado com sucesso.");
+            getMessagesUtil().renderInfoMessage("Agendamento cadastrado com sucesso.");
+            getNovasEntidades().add(agendamentoVO);
         }
+        clearAgendamentoVO();
     }
 
     public void clearAgendamentoVO() {

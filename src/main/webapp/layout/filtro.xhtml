@@ -15,14 +15,14 @@
     <ui:remove> decorFiltroModais </ui:remove>
 
     <p:menubar>
-        <p:menuitem value="Cadastar"
-                    icon="pi pi-fw pi-plus"
-                    outcome="#{filtroBean['cadastrar']()}"
-        />
         <p:menuitem value="Limpar"
                     icon="pi pi-fw pi-refresh"
                     action="#{filtroBean['clearFiltro']()}"
-                    update="filtro-layout,resultado"
+                    update="filtro-layout resultado"
+        />
+        <p:menuitem value="Cadastar"
+                    icon="pi pi-fw pi-plus"
+                    outcome="#{filtroBean['cadastrar']()}"
         />
     </p:menubar>
 

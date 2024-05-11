@@ -4,7 +4,6 @@ import com.teste.pratico.model.util.MessagesUtil;
 import com.teste.pratico.model.vo.VagasVO;
 import com.teste.pratico.service.VagasService;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.annotation.ManagedBean;
@@ -13,28 +12,32 @@ import java.util.Date;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @ManagedBean
 @ViewScoped
-public class VagasManagedView {
+public class VagasManagedView extends AbstractManagedView<VagasVO> {
 
     private final VagasService vagasService;
-
-    private final MessagesUtil messagesUtil;
 
     private VagasVO vagasVO = new VagasVO();
 
     private Date dataAtual = new Date();
 
-    public void salvarVagas() {
+    public VagasManagedView(MessagesUtil messagesUtil, VagasService vagasService) {
+        super(messagesUtil);
+        this.vagasService = vagasService;
+    }
+
+    @Override
+    public void salvar() {
         if (vagasVO.getId() != null) {
             vagasService.salvarVagas(vagasVO);
-            messagesUtil.renderInfoPopup("SUCESSO", "Vagas atualizadas.");
-            clearVagasVO();
+            getMessagesUtil().renderInfoPopup("SUCESSO", "Vagas atualizadas.");
         } else {
             vagasService.criarNovaVagas(vagasVO);
-            messagesUtil.renderInfoMessage("Vagas cadastradas com sucesso.");
+            getMessagesUtil().renderInfoMessage("Vagas cadastradas com sucesso.");
+            getNovasEntidades().add(vagasVO);
         }
+        clearVagasVO();
     }
 
     public void clearVagasVO() {

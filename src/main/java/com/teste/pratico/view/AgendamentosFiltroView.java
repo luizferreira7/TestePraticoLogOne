@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -35,14 +33,6 @@ public class AgendamentosFiltroView extends AbstractFiltro<AgendamentoVO> {
     @Override
     public String cadastrar() {
         return "/agendamento/cadastroAgendamento.html";
-    }
-
-    @Override
-    public void preencherConsulta(AgendamentoVO agendamentoVO) {
-        this.inicio = agendamentoVO.getData();
-        this.fim = agendamentoVO.getData();
-        this.numero = agendamentoVO.getNumero();
-        this.motivo = agendamentoVO.getMotivo();
     }
 
     @Override
