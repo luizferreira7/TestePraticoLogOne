@@ -12,7 +12,7 @@ public interface SolicitanteRepository extends JpaRepository<Solicitante, Long> 
     @Query("""
             select new com.teste.pratico.model.vo.SolicitanteVO(s.id, s.nome)
             from Solicitante s
-            where :nome is null or s.nome like %:nome%
+            where :nome is null or s.nome = '' or lower(s.nome) like lower(concat('%', :nome, '%'))
             """)
     List<SolicitanteVO> findSolicitantesByNome(String nome);
 }

@@ -13,11 +13,13 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
             select a
             from Agendamento a
             join fetch a.solicitante s
-            where ( (cast(:fim as timestamp) is null or a.data >= :inicio)
-            and (cast(:inicio as timestamp) is null or a.data <= :fim) )
-            or a.data BETWEEN :inicio and :fim
+            where ( ( (cast(:fim as timestamp) is null or a.data >= :inicio)
+                  and (cast(:inicio as timestamp) is null or a.data <= :fim) )
+                  or a.data BETWEEN :inicio and :fim )
+            and (:numero is null or :numero = '' or :numero = a.numero)
+            and (:motivo is null or :motivo = '' or lower(a.motivo) like lower(concat('%', :motivo, '%')))
             """)
-    List<Agendamento> findAgendamentoByInicioAndFim(Date inicio, Date fim);
+    List<Agendamento> findAgendamentoByInicioAndFim(Date inicio, Date fim, String numero, String motivo);
 
     @Query("""
             select coalesce(count(a), 0)
