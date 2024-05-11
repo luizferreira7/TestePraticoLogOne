@@ -17,7 +17,7 @@ mvn install -DskipTests
 
 Para executar utilize o seguinte comando:
 ``` bash 
-java -jar -Dserver.port=9292 target/Teste-Pratico-Desenvolvedor-Java-0.0.1-SNAPSHOT.jar
+java -jar -Dserver.port=9292 target/Teste-Pratico-Desenvolvedor-Java-1.0.0.war
 ```
 
 Acesse o sistema em seu browser a partir da url:
