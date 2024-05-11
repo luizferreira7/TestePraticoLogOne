@@ -37,6 +37,16 @@
                     />
                 </div>
 
+                <div class="form-layout-campo col-12 md:col-4">
+                    <p:outputLabel for="numero" value="Numero" styleClass="form-layout-label"/>
+                    <p:inputText id="numero" value="#{agendamentosFiltroView.numero}" styleClass="form-layout-value"/>
+                </div>
+
+                <div class="form-layout-campo col-12 md:col-4">
+                    <p:outputLabel for="motivo" value="Motivo" styleClass="form-layout-label"/>
+                    <p:inputText id="motivo" value="#{agendamentosFiltroView.motivo}" styleClass="form-layout-value"/>
+                </div>
+
             </ui:define>
 
             <ui:define name="decorFiltroResultado">

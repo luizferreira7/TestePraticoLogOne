@@ -59,7 +59,9 @@
                 <p:commandButton value="Salvar"
                                  update="grid"
                                  validateClient="true"
-                                 action="#{vagasManagedView.salvarVagas}"/>
+                                 action="#{vagasFiltroView.atualizarFiltroPosCadastro(vagasManagedView.vagasVO)}">
+                    <f:actionListener binding="#{vagasManagedView.salvarVagas()}" />
+                </p:commandButton>
             </ui:define>
         </ui:decorate>
     </ui:define>

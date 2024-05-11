@@ -10,6 +10,7 @@ import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Getter
@@ -23,13 +24,13 @@ public class AgendamentosFiltroView extends AbstractFiltro<AgendamentoVO> {
 
     private final Date dataAtual = new Date();
 
-    @Temporal(TemporalType.TIMESTAMP)
-
     private Date inicio;
 
-    @Temporal(TemporalType.TIMESTAMP)
-
     private Date fim;
+
+    private String numero;
+
+    private String motivo;
 
     @Override
     public String cadastrar() {
@@ -37,7 +38,24 @@ public class AgendamentosFiltroView extends AbstractFiltro<AgendamentoVO> {
     }
 
     @Override
+    public void preencherConsulta(AgendamentoVO agendamentoVO) {
+        this.inicio = agendamentoVO.getData();
+        this.fim = agendamentoVO.getData();
+        this.numero = agendamentoVO.getNumero();
+        this.motivo = agendamentoVO.getMotivo();
+    }
+
+    @Override
+    public void clearFiltro() {
+        setResultado(new ArrayList<>());
+        this.inicio = null;
+        this.fim = null;
+        this.numero = null;
+        this.motivo = null;
+    }
+
+    @Override
     public void atualizarResultado() {
-        setResultado(agendamentoService.findAgendamentosVO(inicio, fim));
+        setResultado(agendamentoService.findAgendamentosVO(inicio, fim, numero, motivo));
     }
 }

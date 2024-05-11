@@ -31,7 +31,9 @@
                 <p:commandButton value="Salvar"
                                  validateClient="true"
                                  update="grid"
-                                 action="#{solicitantesManagedView.salvarSolicitante()}"/>
+                                 action="#{solicitantesFiltroView.atualizarFiltroPosCadastro(solicitantesManagedView.solicitanteVO)}">
+                    <f:actionListener binding="#{solicitantesManagedView.salvarSolicitante()}" />
+                </p:commandButton>
             </ui:define>
         </ui:decorate>
     </ui:define>

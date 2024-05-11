@@ -37,12 +37,11 @@ public class AgendamentosManagedView {
         if (agendamentoVO.getId() != null) {
             agendamentoService.salvarAgendamento(agendamentoVO);
             messagesUtil.renderInfoPopup("SUCESSO", "Agendamento atualizado.");
+            clearAgendamentoVO();
         } else {
             agendamentoService.criarNovoAgendamento(agendamentoVO);
             messagesUtil.renderInfoMessage("Agendamento cadastrado com sucesso.");
         }
-
-        clearAgendamentoVO();
     }
 
     public void clearAgendamentoVO() {

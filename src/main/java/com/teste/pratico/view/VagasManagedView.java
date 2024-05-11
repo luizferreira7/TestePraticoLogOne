@@ -30,11 +30,11 @@ public class VagasManagedView {
         if (vagasVO.getId() != null) {
             vagasService.salvarVagas(vagasVO);
             messagesUtil.renderInfoPopup("SUCESSO", "Vagas atualizadas.");
+            clearVagasVO();
         } else {
             vagasService.criarNovaVagas(vagasVO);
             messagesUtil.renderInfoMessage("Vagas cadastradas com sucesso.");
         }
-        clearVagasVO();
     }
 
     public void clearVagasVO() {

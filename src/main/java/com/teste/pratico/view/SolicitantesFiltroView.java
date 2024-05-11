@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
+import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -19,6 +20,17 @@ public class SolicitantesFiltroView extends  AbstractFiltro<SolicitanteVO> {
     private final SolicitanteService solicitanteService;
 
     private String nome;
+
+    @Override
+    public void preencherConsulta(SolicitanteVO solicitanteVO) {
+        this.nome = solicitanteVO.getNome();
+    }
+
+    @Override
+    public void clearFiltro() {
+        setResultado(new ArrayList<>());
+        this.nome = null;
+    }
 
     @Override
     public void atualizarResultado() {

@@ -54,7 +54,9 @@
                 <p:commandButton value="Salvar"
                                  update="grid"
                                  validateClient="true"
-                                 action="#{agendamentosManagedView.salvarAgendamento()}"/>
+                                 action="#{agendamentosFiltroView.atualizarFiltroPosCadastro(agendamentosManagedView.agendamentoVO)}">
+                    <f:actionListener binding="#{agendamentosManagedView.salvarAgendamento()}"/>
+                </p:commandButton>
             </ui:define>
         </ui:decorate>
     </ui:define>
