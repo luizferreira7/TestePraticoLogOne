@@ -6,9 +6,19 @@ Instruções podem ser encontradas no arquivo ```Desafio - Teste Prático Java.p
 
 Para resolver o desafio, adicionei as dependências do JSF, Primefaces e Tomcat ao projeto para poder integrar o SpringBoot com o front-end.
 
+Também utilizei o Lombok para gerar Getter, Setter e Constructor de forma automatica deixando o código mais limpo.
+
+Adicionei o ModelMapper para poder mapear os VOs e as entidades.
+
+# Deploy
+
+Conectei o projeto a uma AWS da Amazon utilizando o CodePipeline para gerar as builds e novos deploys automicamente a partir de novos pushs.
+
+Pode ser acessado clicando [aqui](http://testepratico.us-east-2.elasticbeanstalk.com/index.html).
+
 ## Sistema de Agendamento
 
-O sistema consiste em uma página principal exibindo o que pode ser feito, como buscar pelas entidades já cadastradas a partir do uso de filtros e o cadastro de novas entidades nas páginas de cadastro.
+O sistema consiste numa página principal exibindo o que pode ser feito, como buscar pelas entidades já cadastradas a partir do uso de filtros e o cadastro de novas entidades nas páginas de cadastro.
 
 Para buildar o projeto execute o seguinte comando:
 ``` bash 
@@ -20,7 +30,7 @@ Para executar utilize o seguinte comando:
 java -jar -Dserver.port=9292 target/Teste-Pratico-Desenvolvedor-Java-1.0.0.jar
 ```
 
-Acesse o sistema em seu browser a partir da url:
+Acesse o sistema no seu browser a partir da url:
 ```url
 http://localhost:9292/index.html
 ```
@@ -37,9 +47,6 @@ e facilitando a criação de queries em JPQL a já que podemos cria-las a partir
 
 Para as regras de negócio optei por criar Services responsaveis por executar validações e chamar os repositorios para persistência e obtenção de dados.
 
-Como as instruções especificavam que eu não deveria adicionar outros frammeworks, não utilizei o Lombok e nenhum framework para mappers, em vez disso implementei
-um CustomMapper a partir do seguinte [artigo](https://medium.com/@halillbaydar/custom-class-mapper-in-java-9f78258c00).
-
 ### Front-end
 
 No front-end criei um template base para o projeto que implementa um Header e um Footer, além de permitir facilmente a utilização do mesmo em diversas outras partes do projeto reutilizando componentes.
@@ -55,7 +62,6 @@ A conexão entre o back e o front ocorre a partir da utilização do ELResolver 
 adotei o padrão de chamar os beans de ManagedView e FiltroView, também optei por utilizar sempre um ViewObject (VO) represntando a entidade no front para evitar
 trabalhar com a mesma entidade gerenciada diretamente no front.
 
-### Testes
+### Testes Automatizados
 
-Optei por não implementa-los pois acredito que para além dos testes unitários seria necessário a utilização de outros frameworks e talvez até a utilziação de um banco como H2 (Nunca utilizei o HSQLDB para testes),
-para testes de persistência de dados. Como também nunca fiz testes de integração com SpringBoot + JSF, não consegui encontrar uma boa forma no tempo para realização do desafio.
+Optei por não implementa-los pois acredito não estava no escopo do projeto.
