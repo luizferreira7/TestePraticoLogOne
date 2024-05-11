@@ -6,4 +6,4 @@ WORKDIR TestePraticoLogOne
 RUN mvn install -DskipTests
 RUN cp -rf * ..
 WORKDIR ..
-ENTRYPOINT ["java","-jar","target/Teste-Pratico-Desenvolvedor-Java-1.0.0.war"]
+ENTRYPOINT ["java","-jar","target/Teste-Pratico-Desenvolvedor-Java-1.0.0.jar"]
