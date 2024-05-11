@@ -10,10 +10,17 @@
 	</parent>
 	<groupId>com.teste.pratico</groupId>
 	<artifactId>Teste-Pratico-Desenvolvedor-Java</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Teste-Pratico-Desenvolvedor-Java</name>
 	<description>Projeto para Teste Prático Com Spring Boot</description>
-	
+	<packaging>war</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>17</java.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
