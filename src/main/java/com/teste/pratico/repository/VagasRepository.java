@@ -10,14 +10,18 @@ import java.util.List;
 
 public interface VagasRepository extends JpaRepository<Vagas, Long> {
 
-    @Query("select new com.teste.pratico.model.vo.VagasVO(v.id, v.inicio, v.fim, v.quantidade) " +
-            "from Vagas v " +
-            "where (cast(:inicio as timestamp) is null or v.inicio >= :inicio) " +
-            "and (cast(:fim as timestamp) is null or v.fim <= :fim) ")
+    @Query("""
+            select new com.teste.pratico.model.vo.VagasVO(v.id, v.inicio, v.fim, v.quantidade)
+            from Vagas v
+            where (cast(:inicio as timestamp) is null or v.inicio >= :inicio)
+            and (cast(:fim as timestamp) is null or v.fim <= :fim)
+            """)
     List<VagasVO> findVagasByInicioAndFim(Date inicio, Date fim);
 
-    @Query("select coalesce(sum(v.quantidade), 0) " +
-            "from Vagas v " +
-            "where :data between v.inicio and v.fim")
+    @Query("""
+            select coalesce(sum(v.quantidade), 0)
+            from Vagas v
+            where :data between v.inicio and v.fim
+            """)
     int findQuantidadeVagasByData(Date data);
 }
