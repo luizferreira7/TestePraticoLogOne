@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Getter
@@ -17,10 +15,8 @@ import java.util.Date;
 @Entity
 public class Vagas extends AbstractEntity {
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Date inicio;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Date fim;
 
     private Integer quantidade;

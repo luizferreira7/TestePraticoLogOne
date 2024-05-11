@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,10 +16,8 @@ public class VagasVO {
 
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Date inicio;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Date fim;
 
     private Integer quantidade;
